@@ -78,7 +78,7 @@
   company: "TRIUMF",
   date: "Summer 2024",
   actions: (
-    "Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras", 
+    "Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.", 
     "Used CERN's grid computing to parallelize compute across thousands of nodes."),
   visible: true
 )
