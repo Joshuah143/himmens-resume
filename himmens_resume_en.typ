@@ -6,54 +6,53 @@
 #set text(font: "Open Sans", size: 10pt)
 #show text.where(weight: "bold"): set text(fill: ubcblue)
 #show text.where(weight: "regular"): set text(fill: rgb("#333333"))
-#let cv-mode = false
 
 #show heading: it => [
   #text(fill: ubcblue)[#it.body] #box(width: 1fr, line(length: 100%, stroke: ubcblue + 0.5pt))
 ]
 
+#let cv-mode = false
 
 #let job = (title: "", 
             company: "", 
             date: "", 
             actions: [],
             visible: true) => {
-  if (visible == true or cv-mode == true) [
+  if (visible or cv-mode) [
     #text(size: 10pt, weight:"bold")[#title] \
     #company | #date \
     #for action in actions [
       - #text(size: 10pt)[#action] \
     ]
   ]
-  }
+}
 
 #let award = (title: "", 
              organization: "", 
              date: "", 
              description: [],
              visible: true) => {
-  if (visible == true or cv-mode == true) [
+  if (visible or cv-mode) [
     #text(weight:"bold")[#title] | #date \
     #description
   ]
-  }
+}
 
 #let skill = (title: "", 
              description: "",
              visible: true) => {
-  if (visible == true or cv-mode == true) [
+  if (visible or cv-mode) [
     #text(weight:"bold")[#title] | #description \
   ]
-  }
+}
 
 #let achievement = (focus: "", 
                     description: "",
                     visible: true) => {
-  if (visible == true or cv-mode == true) [
+  if (visible or cv-mode) [
     - #text(weight:"bold")[#focus] #description \
   ]
-  }
-
+}
 
 #set page(footer: grid(columns: (50%, 50%), image("assets/cooplogo.png"), grid.cell(align: right+horizon)[#text(font: "Open Sans", size: 12pt, weight: "bold")[science.coop\@ubc.ca | 604-822-9677]]), header: locate(loc => {
       if counter(page).at(loc).first() > 1 {
@@ -66,7 +65,10 @@
 #align(center)[
 
 #text(size: 16pt, font: "Open Sans", weight: "bold")[Joshua Himmens] \
-#link("mailto:joshua@himmens.com")[joshua\@himmens.com] | 587 434 0118 | #link("https://himmens.com")[himmens.com] \
+#if cv-mode [
+  #text(size: 10pt, font: "Open Sans", weight: "bold")[Curriculum Vitae \ ]
+]
+#link("mailto:joshua@himmens.com")[joshua\@himmens.com] | 587 434 0118 | #link("https://himmens.com")[https://himmens.com] \
 #text(weight: "bold")[ATLAS Deep Learning Research Student at TRIUMF\ Undergraduate Engineering Physics Student at The University of British Columbia]
 ]
 
@@ -79,7 +81,8 @@
   date: "Summer 2024",
   actions: (
     "Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.", 
-    "Used CERN's grid computing to parallelize compute across thousands of nodes."),
+    "Used CERN's grid computing to parallelize compute across thousands of nodes.",
+    "Worked independently to develop models using cutting edge transfer learning approaches."),
   visible: true
 )
 
@@ -199,7 +202,6 @@
   visible: true
 )
 
-
 #achievement(
   focus: "\"Quantum School for Young Students\"",
   description: "participant at the University of Waterloo and Institute for Quantum Computing.",
@@ -249,6 +251,8 @@
 
 Co-author of #text(weight: 
 "bold")[Implementing Low-Cost ADCS for 1U CubeSat: Insights from ALEASAT] to be presented at the International Aeronautical Conference (IAC) in October 2024.
+
+Presented #text(weight: "bold")[3D Particle Flow in the ATLAS Calorimeter: How to Train Your Model], a speed-talk, at the 2024 TRIUMF Science Week
 
 = Technical Skills
 
