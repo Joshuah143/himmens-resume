@@ -116,7 +116,7 @@
   title: "ATLAS Deep Learning Research Student",
   company: "TRIUMF",
   description: "ATLAS detects particles from the Large Hadron Collider colliding at 99.999999% the speed of light to explore the bounds of physics.",
-  date: "May 2024 - Present",
+  date: "05/2024 - Present",
   site: "himmens.com/triumf",
   actions: (
     "Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.", 
@@ -129,7 +129,7 @@
   title: "Command and Data Handling (CDH) Lead and Firmware Developer",
   company: "UBC Orbit Satellite Team",
   description: "ALEASAT is an earth observation cubesat supported by the European Space Agency and UBC.",
-  date: "October 2023 - Present",
+  date: "10/2023 - Present",
   site: "himmens.com/orbit",
   actions: (
     "Led the CDH team to develop software to meet mission and testing objectives from ESA (European Space Agency) for the ALEASAT project.", 
