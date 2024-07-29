@@ -50,7 +50,7 @@
       #company \
       #date \ 
       #if site != "" [
-      #site \
+      #link(site) \
     ] ],
       [#if description != "" [
       #description \
