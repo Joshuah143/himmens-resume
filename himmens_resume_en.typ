@@ -15,7 +15,7 @@
 #let cv-mode = false
 #let use_footer = true
 
-#let old_job = (title: "", 
+#let ojob = (title: "", 
             company: "", 
             description: "",
             date: "", 
@@ -232,7 +232,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
 = Awards
 
 #award(
-  title: "Erich Vogt First Year Summer Research Experience (FYSRE) award",
+  title: "Erich Vogt First Year Summer Research Experience (FYSRE) Award",
   date: "2024",
   description: ("Awarded to promising students in physics for a 4 month research placement."),
   visible: true)
