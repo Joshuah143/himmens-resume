@@ -264,7 +264,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
 #award(
   title: "Tom Lawson award for embodying the spirit of Canadian debate",
   date: "2023",
-  description: ("Awarded for embodying the spirit of Canadian debate. Required a vote of the student delegates at the Canadian National Debate Seminar."),
+  description: ("Required a vote of the student delegates at the Canadian National Debate Seminar."),
   visible: true)
 
 #award(
