@@ -206,6 +206,8 @@
 
 = Publications and Presentations
 
+Presented #text(weight: "bold")[Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment] at the Canadian Astroparticle Physics Summer Student Talks Competition (CASST 2024), where I #text(weight: "bold")[placed 2nd] of 44 presentations.
+
 Co-author of #text(weight: 
 "bold")[Implementing Low-Cost ADCS for 1U CubeSat: Insights from ALEASAT] to be presented at the International Aeronautical Conference (IAC) in October 2024.
 
@@ -302,7 +304,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
   actions: (
     "Created and edited content on human and child rights in the Americas.", 
     "Attended the 3rd Pan American Child and Youth Forum in Cartagena, Colombia with the Government of Canada."),
-  visible: true
+  visible: false
 )
 
 = Experiences
