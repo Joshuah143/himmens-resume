@@ -15,7 +15,7 @@
 #let cv-mode = false
 #let use_footer = true
 
-#let ojob = (title: "", 
+#let job = (title: "", 
             company: "", 
             description: "",
             date: "", 
@@ -37,7 +37,7 @@
   ]
 }
 
-#let job = (title: "", 
+#let split_job = (title: "", 
             company: "", 
             description: "",
             date: "", 
@@ -91,7 +91,7 @@
 
 #set page(paper: "us-letter", footer: grid(columns: (50%, 50%), image("assets/cooplogo.png"), grid.cell(align: right+horizon)[#text(font: "Open Sans", weight: "bold")[science.coop\@ubc.ca | 604-822-9677]]), header: locate(loc => {
       if counter(page).at(loc).first() > 1 {
-        return {text(weight: "bold")[Joshua Himmens - Resume]; box(width: 1fr, align(right)[*587 434 0118*])}
+        return {text(weight: "bold")[Joshua Himmens - Resume]; box(width: 1fr, align(right)[*joshua\@himmens.com | 587-434-0118*])}
       }}))
 
 
@@ -99,16 +99,43 @@
 // Begin actual resume
 #align(center)[
 
-#text(size: 15pt, font: "Open Sans", weight: "bold")[Joshua Himmens] \
+#text(size: 17pt, font: "Open Sans", weight: "bold")[Joshua Himmens] \
 #if cv-mode [
   #text(size: 10pt, font: "Open Sans", weight: "bold")[Curriculum Vitae \ ]
 ]
-#link("mailto:joshua@himmens.com")[joshua\@himmens.com] | 587-434-0118 | #link("https://himmens.com")[https://himmens.com] \
+#link("mailto:joshua@himmens.com")[joshua\@himmens.com] | 587-434-0118 | #link("https://himmens.com")[himmens.com] \
 #text(weight: "bold")[Undergraduate Engineering Physics Student] at The University of British Columbia\  
-#text(weight: "bold")[92% (A+)] Average | #text(weight: "bold")[English] (Native), #text(weight: "bold")[French] (Working Knowledge)
-
+#text(weight: "bold")[92% (A+)] Average | #text(weight: "bold")[English], #text(weight: "bold")[French] (Working Knowledge) |  #link("https://github.com/Joshuah143")[Github/Joshuah143]
 ]
 
+= Technical Skills
+
+
+#skill(
+  title: "Machine Learning",
+  description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX",
+  visible: true
+)
+#skill(
+  title: "Embedded Programming",
+  description: "Experienced with FreeRTOS on TMS570, RP2040, and STM32",
+  visible: true,
+)
+#skill(
+  title: "Software Development",
+  description: "C, C++, Python, Java, MATLAB, Bash, Git",
+  visible: true,
+)
+#skill(
+  title: "Quantum Computing",
+  description: "Used Qiskit to simulate quantum algorithms.",
+  visible: false,
+)
+#skill(
+  title: "Particle Physics",
+  description: "Root, CERN grid compute, Athena",
+  visible: true,
+)
 
 = Technical/Research Experience
 
@@ -116,10 +143,11 @@
   title: "ATLAS Deep Learning Research Student",
   company: "TRIUMF",
   description: "ATLAS detects particles from the Large Hadron Collider colliding at 99.999999% the speed of light to explore the bounds of physics.",
-  date: "05/2024 - Present",
+  date: "05/2024 - Present (part time from 09/2024)",
   site: "himmens.com/triumf",
   actions: (
     "Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.", 
+    "Used ONNX to implement models in C++ for deployment on the ATLAS Athena system.",
     "Used CERN's grid computing to parallelize compute across thousands of nodes.",
     "Worked independently to develop models using cutting edge transfer learning approaches."),
   visible: true
@@ -133,9 +161,9 @@
   site: "himmens.com/orbit",
   actions: (
     "Led the CDH team to develop software to meet mission and testing objectives from ESA (European Space Agency) for the ALEASAT project.", 
-    "Managed a team of 10 firmware developers.", 
-    "Developed mission testing, function testing, and acceptance testing procedures.",
-    "Programmed device drivers, electrical ground support equipment (EGSE).", 
+    "Managed a team of 10 firmware developers, with over 40 tasked, 1300 CI builds, 2000 lines of code completed/written.", 
+    "Developed mission testing, function testing, and acceptance testing procedures to meet ESA and ECSS standards.",
+    "Programmed device drivers and electrical ground support equipment (EGSE).", 
     "Developed the ALEASAT Avionics Test Bench (FlatSat).", 
 ),
   visible: true
@@ -209,27 +237,13 @@
 Presented #text(weight: "bold")[Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment] at the Canadian Astroparticle Physics Summer Student Talks Competition (CASST 2024), where I #text(weight: "bold")[placed 2nd] of 44 presentations.
 
 Co-author of #text(weight: 
-"bold")[Implementing Low-Cost ADCS for 1U CubeSat: Insights from ALEASAT] to be presented at the International Aeronautical Conference (IAC) in October 2024.
+"bold")[JetPointnet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment] to be presented at the Canadian Undergraduate Physics Conference in October 2024.
+
+#pagebreak()
 
 Presented #text(weight: "bold")[3D Particle Flow in the ATLAS Calorimeter: How to Train Your Model], a speed-talk, at the 2024 TRIUMF Science Week
 
 Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week Presentation] at the European Space Agency's ESEC-GALAXIA (Transinne Belgium) in 2024 as part of the "Fly Your Satellite 4!" program.
-
-= Technical Skills
-
-
-#skill(
-  title: "Machine Learning",
-  description: "Experienced using TensorFlow, Keras, PointNet, Weights and Biases (wandb) for model development."
-)
-#skill(
-  title: "Embedded Programming",
-  description: "Experienced with FreeRTOS on TMS570 and RP2040."
-)
-#skill(
-  title: "Quantum Computing",
-  description: "Used Qiskit to simulate quantum algorithms."
-)
 
 = Awards
 
@@ -267,7 +281,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
   title: "Tom Lawson award for embodying the spirit of Canadian debate",
   date: "2023",
   description: ("Required a vote of the student delegates at the Canadian National Debate Seminar."),
-  visible: true)
+  visible: false)
 
 #award(
   title: "10 Scouts Canada commendations",
@@ -277,7 +291,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
 
 = Advocacy and Leadership
 
-#job(
+#split_job(
   title: "Curriculum and Advocacy Director",
   company: "UBC Engineering Undergraduate Society",
   date: "2024 - Present",
@@ -287,7 +301,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
   visible: true
 )
 
-#job(
+#split_job(
   title: "Advisory Team Member",
   company: "Child Rights Connect",
   date: "2021 - 2023",
@@ -297,7 +311,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
   visible: true
 )
 
-#job(
+#split_job(
   title: "Correspondent",
   company: "Organization of American States",
   date: "2019 - 2020",
