@@ -236,7 +236,7 @@
 
 Presented #text(weight: "bold")[Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment] at the Canadian Astroparticle Physics Summer Student Talks Competition (CASST 2024), where I #text(weight: "bold")[placed 2nd] of 44 presentations.
 
-Co-author of #text(weight: 
+Presenter of #text(weight: 
 "bold")[JetPointnet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment] to be presented at the Canadian Undergraduate Physics Conference in October 2024.
 
 #pagebreak()
