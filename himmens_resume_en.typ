@@ -14,6 +14,7 @@
 
 #let cv-mode = false
 #let use_footer = true
+#let use_descriptions = false
 
 #let job = (title: "", 
             company: "", 
@@ -28,7 +29,7 @@
     #if site != "" [
        | #site 
     ]\ 
-    #if description != "" [
+    #if description != "" and use_descriptions [
       #description \
     ]
     #for action in actions [
@@ -45,7 +46,7 @@
             site: "",
             visible: true) => {
   if (visible or cv-mode) {
-    grid(columns: (1fr, 3fr), column-gutter: 10pt,  row-gutter: 0pt,
+    grid(columns: (1.7fr, 3fr), column-gutter: 10pt,  row-gutter: 0pt,
       [ #text(weight: "bold")[#title] \
       #company \
       #date \ 
@@ -140,6 +141,15 @@
 = Technical/Research Experience
 
 #job(
+  title: "Associate Machine Learning Developer",
+  company: "AltaML",
+  description: "",
+  date: "01/2025 - 04/2025",
+  actions: (),
+  visible: true,
+)
+
+#job(
   title: "ATLAS Deep Learning Research Student",
   company: "TRIUMF",
   description: "ATLAS detects particles from the Large Hadron Collider colliding at 99.999999% the speed of light to explore the bounds of physics.",
@@ -147,9 +157,9 @@
   site: "himmens.com/triumf",
   actions: (
     "Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.", 
-    "Used ONNX to implement models in C++ for deployment on the ATLAS Athena system.",
     "Used CERN's grid computing to parallelize compute across thousands of nodes.",
-    "Worked independently to develop models using cutting edge transfer learning approaches."),
+    "Worked independently to develop models using cutting edge transfer learning approaches.",
+    "Implementing models into production using NVIDIA Triton."),
   visible: true
 )
 
@@ -161,10 +171,9 @@
   site: "himmens.com/orbit",
   actions: (
     "Led the CDH team to develop software to meet mission and testing objectives from ESA (European Space Agency) for the ALEASAT project.", 
-    "Managed a team of 10 firmware developers, with over 40 tasked, 1300 CI builds, 2000 lines of code completed/written.", 
+    "Managed a team of 10 firmware developers, with over 40 tasks completed, 1300 CI builds, 2000 lines of code completed/written.", 
     "Developed mission testing, function testing, and acceptance testing procedures to meet ESA and ECSS standards.",
-    "Programmed device drivers and electrical ground support equipment (EGSE).", 
-    "Developed the ALEASAT Avionics Test Bench (FlatSat).", 
+    "Programmed device drivers and electrical ground support equipment (EGSE).",
 ),
   visible: true
 )
@@ -237,9 +246,7 @@
 Presented #text(weight: "bold")[Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment] at the Canadian Astroparticle Physics Summer Student Talks Competition (CASST 2024), where I #text(weight: "bold")[placed 2nd] of 44 presentations.
 
 Presenter of #text(weight: 
-"bold")[JetPointnet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment] to be presented at the Canadian Undergraduate Physics Conference in October 2024.
-
-#pagebreak()
+"bold")[JetPointnet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment] presented at the Canadian Undergraduate Physics Conference in October 2024.
 
 Presented #text(weight: "bold")[3D Particle Flow in the ATLAS Calorimeter: How to Train Your Model], a speed-talk, at the 2024 TRIUMF Science Week
 
@@ -292,12 +299,12 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
 = Advocacy and Leadership
 
 #split_job(
-  title: "Curriculum and Advocacy Director",
-  company: "UBC Engineering Undergraduate Society",
+  title: "Highly Qualified Personnel (HQP) Advisory Committee Member",
+  company: "Arthur B McDonald Astroparticle Physics Institute",
   date: "2024 - Present",
   actions: (
-    "Worked with the faculty and the undergraduate society to develop multi-year plans for coop-related advocacy.", 
-    "Advocated for transparency in coop fee use in line with standards at other institutions."),
+    "Worked with members across Canada to develop opportunity lists for students and recent graduates.", 
+    "Shared McDonald Institute opportunities with eligible HQP in BC and Alberta."),
   visible: true
 )
 
@@ -309,7 +316,7 @@ Presented #text(weight: "bold")[ALEASAT ESA "Fly Your Satellite!" Training Week 
     "Provided guidance to UN delegations on communication strategies for high-level rights goals.", 
     "Presented to governments and consulted on international initiatives to support the UN Convention on the Rights of the Child."),
   visible: true
-)
+) 
 
 #split_job(
   title: "Correspondent",
