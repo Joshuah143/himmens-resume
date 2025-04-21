@@ -1,0 +1,194 @@
+personal:
+  name: Joshua Himmens
+  email: joshua@himmens.com
+  phone: 587-434-0118
+  url: https://himmens.com
+  titles:
+    - Engieering Physics Student
+  profiles:
+    - network: LinkedIn
+      username: Joshua Himmens
+      url: https://linkedin.com/in/joshua-himmens
+    - network: GitHub
+      username: joshuah143
+      url: https://github.com/joshuah143
+
+education: 
+  degree_type: Bachelor of Applied Science
+  degree: Engineering Physics
+  start_date: 2024-08-27
+  end_date: 2028-05-01
+
+work:
+  - organization: AltaML
+    show: true
+    url: "https://himmens.com/altaml"
+    location: ""
+    positions:
+      - position: Associate Machine Learning Developer
+        show: true
+        startDate: 2025-01-01
+        endDate: 2025-04-01
+        highlights: []
+
+  - organization: TRIUMF
+    show: true
+    url: "https://himmens.com/triumf"
+    location: ""
+    positions:
+      - position: ATLAS Deep Learning Research Student
+        show: true
+        startDate: 2024-05-01
+        endDate: 2025-02-20
+        highlights:
+          - Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.
+          - Used CERN's grid computing to parallelize compute across thousands of nodes.
+          - Worked independently to develop models using cutting edge transfer learning approaches.
+          - Implementing models into production using NVIDIA Triton.
+
+  - organization: UBC Orbit Satellite Design Team
+    show: true
+    url: "https://himmens.com/orbit"
+    location: ""
+    positions:
+      - position: Command and Data Handling (CDH) Lead and Firmware Developer
+        show: true
+        startDate: 2023-10-01
+        endDate: "present"
+        highlights:
+          - Led the CDH team to develop software to meet mission and testing objectives from ESA (European Space Agency) for the ALEASAT project.
+          - "Managed a team of *10* firmware developers, with over *\\$15 000* worth of technical infastructure."
+          - Developed mission testing, function testing, and acceptance testing procedures to meet ESA and ECSS standards.
+          - Programmed device drivers and electrical ground support equipment (EGSE).
+      - position: Embedded Firmware Developer
+        show: true
+        startDate: 2023-01-01
+        endDate: "present"
+        highlights:
+          - Programmed device drivers, electrical ground support equipment (EGSE).
+          - Developed the ALEASAT Avionics Test Bench (FlatSat).
+          - Worked on the ALEASAT onboard computer for launch in Q1 2026.
+
+  - organization: NumPy
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: Open Source Contributor
+        show: true
+        startDate: 2021-01-01
+        endDate: 2021-12-31
+        highlights:
+          - Contributed to the open-source numerical analysis tool with 86 million monthly downloads.
+
+  - organization: Elections Alberta
+    show: true
+    url: ""
+    location: ""
+    positions:
+      - position: Elections Officer
+        show: true
+        startDate: 2023-01-01
+        endDate: 2023-12-31
+        highlights:
+          - Integrated as part of a team to run a safe and fair provincial election.
+          - Managed public interactions and vote counting.
+
+  - organization: Western Canada High School
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: International Baccalaureate Student
+        show: true
+        startDate: 2020-01-01
+        endDate: 2023-12-31
+        highlights:
+          - Took the IB diploma program with higher-level Math, Physics, and Chemistry.
+          - Completed an Extended Essay on simulations of the brachistochrone problem in physics.
+
+  - organization: Scouts Canada
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: National Youth Spokesperson
+        show: true
+        startDate: 2017-01-01
+        endDate: 2022-12-31
+        highlights:
+          - Hosted events.
+          - Authored articles.
+          - Managed social media.
+          - Engaged with media outlets.
+      - position: Committee Member, Sustainable Development Goals Program
+        show: false
+        startDate: 2019-01-01
+        endDate: 2020-12-31
+        highlights:
+          - Assisted in creating programs for Sustainable Development Goals education and outreach.
+
+awards:
+  - title: "Hector J. MacLeod Award"
+    issuer: IEEE Vancouver Section
+    date: 2024-04-15
+    highlights: 
+    - "Awarded to students who have demonstrated pioneering efforts in their chosen field of study and attained high scholastic honours."
+    value: 2000
+    visible: true
+
+  - title: "Erich Vogt First Year Summer Research Experience (FYSRE) Award"
+    issuer: UBC Department of Physics and Astronomy
+    date: 2024-05-01
+    highlights: 
+    - "Awarded to promising students in physics for a 4-month research placement."
+    value: null
+    visible: true
+
+  - title: "Alberta Centennial Award and Alberta Premier's Citizenship Award"
+    issuer: Government of Alberta
+    date: 2023-05-01
+    highlights: 
+    - "Awarded for outstanding community service."
+    value: 2000
+    visible: true
+
+  - title: "Calgary Flames Foundation Community Involvement Scholarship"
+    issuer: Education Matters
+    date: 2023-08-01
+    highlights: 
+    - "Awarded for community involvement."
+    value: 2005
+    visible: true
+
+  - title: "Julia Turnbull Leadership Award for exceptional community service"
+    issuer: The Calgary Foundation
+    date: 2023-07-01
+    highlights: 
+    - "Awarded for exceptional community service."
+    value: 1000
+    visible: true
+
+  - title: "Ted Rogers Entrance Scholarship"
+    issuer: Rogers Communications
+    date: 2023-06-01
+    highlights: 
+    - "Awarded for academic achievement."
+    value: 2000
+    visible: true
+
+  - title: "Tom Lawson Award for embodying the spirit of Canadian debate"
+    issuer: Canadian National Debate Society
+    date: 2023-01-01
+    highlights: 
+    - "Required a vote of the student delegates at the Canadian National Debate Seminar."
+    value: null
+    visible: false
+
+  - title: "10 Scouts Canada commendations"
+    issuer: Scouts Canada
+    date: 2022-05-01
+    highlights: 
+    - "Awarded for various achievements."
+    value: null
+    visible: false
