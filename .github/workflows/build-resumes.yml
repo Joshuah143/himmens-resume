@@ -6,6 +6,11 @@ name: Build Resumes
 # - upload/download-artifact: v4 (latest as of April 2024)
 # - softprops/action-gh-release: v2 (latest as of April 2024)
 
+# Default permissions for all jobs
+permissions:
+  contents: write  # Needed for creating releases and pushing to branches
+  packages: read   # Needed for downloading artifacts
+
 on:
   push:
     branches: [ main, develop ]
@@ -25,6 +30,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Add permissions needed for artifacts and releases
+    permissions:
+      contents: write
+      packages: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -114,22 +123,33 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
+    # Add write permissions to create and push to published branch
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Create published branch if it doesn't exist
+      - name: Set up Git configuration
         run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          
+      - name: Create or checkout published branch
+        run: |
+          echo "Checking if published branch exists..."
           git fetch origin
-          if ! git ls-remote --heads origin published | grep published; then
+          
+          if git ls-remote --heads origin published | grep published; then
+            echo "Published branch exists, checking it out"
+            git checkout -B published --track origin/published
+          else
+            echo "Creating new published branch"
             git checkout -b published
-            git config --local user.email "actions@github.com"
-            git config --local user.name "GitHub Actions"
             git commit --allow-empty -m "Initialize published branch"
             git push -u origin published
-          else
-            git checkout published
           fi
           
       - name: Download built PDFs
@@ -140,9 +160,24 @@ jobs:
           
       - name: Commit PDFs to published branch
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add output/*.pdf
+          mkdir -p output
+          echo "Current directory content:"
+          ls -la
+          
+          echo "Output directory content:"
+          ls -la output/
+          
+          # Make sure the output directory exists and has PDFs
+          if [ -z "$(ls -A output/)" ]; then
+            echo "Warning: Output directory is empty! Checking artifacts..."
+            find . -name "*.pdf" -type f
+          fi
+          
+          # Add all PDFs to git
+          git add -f output/*.pdf || echo "No PDFs found to add"
+          
           # Try to commit, but don't fail if nothing to commit
-          git commit -m "Update PDFs from ${{ github.sha }}" || echo "No changes to commit"
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update PDFs from ${{ github.sha }}"
+          
+          # Push changes
           git push origin published
