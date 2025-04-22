@@ -10,6 +10,7 @@ name: Build Resumes
 permissions:
   contents: write  # Needed for creating releases and pushing to branches
   packages: read   # Needed for downloading artifacts
+  id-token: write  # Needed for build attestations
 
 on:
   push:
@@ -34,6 +35,7 @@ jobs:
     permissions:
       contents: write
       packages: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:

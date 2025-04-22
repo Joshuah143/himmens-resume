@@ -156,3 +156,18 @@ For PDFs generated from the main branch, our CI pipeline uses GitHub's [Build Pr
 - PDFs are built from the exact source code in the repository
 - The build process is traceable and tamper-evident
 - Chain of custody for the PDFs is maintained
+
+To verify attestations of downloaded PDFs, use:
+
+```bash
+gh attestation verify <pdf-file> --repo joshuah143/himmens-resume
+```
+
+#### Repository Organization
+
+The repository uses a branch structure where:
+- `develop`: Active development work
+- `main`: Production-ready code
+- `published`: Contains the built PDF artifacts
+
+When making changes, work on the `develop` branch and merge to `main` when ready to publish.
