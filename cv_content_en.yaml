@@ -4,7 +4,7 @@ personal:
   phone: 587-434-0118
   url: https://himmens.com
   titles:
-    - Engieering Physics Student
+    - Engineering Physics Student
   profiles:
     - network: LinkedIn
       username: Joshua Himmens
@@ -13,11 +13,19 @@ personal:
       username: joshuah143
       url: https://github.com/joshuah143
 
-education: 
-  degree_type: Bachelor of Applied Science
-  degree: Engineering Physics
-  start_date: 2024-08-27
-  end_date: 2028-05-01
+education:
+  institution: University of British Columbia
+  studyType: Bachelor of Applied Science
+  area: Engineering Physics
+  startDate: 2023-09-01
+  endDate: 2028-05-01
+  location: Vancouver, BC, Canada
+  gpa: "92% (A+)"
+  honors:
+    - "Dean's Honor List"
+  highlights:
+    - "First-year average of 92% (A+)"
+    - "Working knowledge of English and French"
 
 work:
   - organization: AltaML
@@ -192,3 +200,111 @@ awards:
     - "Awarded for various achievements."
     value: null
     visible: false
+
+skills:
+  - title: "Machine Learning"
+    description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX"
+    visible: true
+  - title: "Embedded Programming"
+    description: "Experienced with FreeRTOS on TMS570, RP2040, and STM32"
+    visible: true
+  - title: "Software Development"
+    description: "C, C++, Python, Java, MATLAB, Bash, Git"
+    visible: true
+  - title: "Quantum Computing"
+    description: "Used Qiskit to simulate quantum algorithms."
+    visible: false
+  - title: "Particle Physics"
+    description: "Root, CERN grid compute, Athena"
+    visible: true
+
+publications:
+  - name: "Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment"
+    publisher: "Canadian Astroparticle Physics Summer Student Talks Competition (CASST 2024)"
+    releaseDate: "2024-06-01"
+    url: "https://himmens.com/publications/casst2024"
+    highlights:
+      - "Placed 2nd of 44 presentations"
+    visible: true
+    
+  - name: "JetPointnet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment"
+    publisher: "Canadian Undergraduate Physics Conference"
+    releaseDate: "2024-10-01"
+    url: "https://himmens.com/publications/cupc2024"
+    visible: true
+    
+  - name: "3D Particle Flow in the ATLAS Calorimeter: How to Train Your Model"
+    publisher: "TRIUMF Science Week"
+    releaseDate: "2024-05-01"
+    url: "https://himmens.com/publications/triumf2024"
+    visible: true
+    
+  - name: "ALEASAT ESA \"Fly Your Satellite!\" Training Week Presentation"
+    publisher: "European Space Agency's ESEC-GALAXIA (Transinne Belgium)"
+    releaseDate: "2024-03-01"
+    url: "https://himmens.com/publications/esa2024"
+    visible: true
+
+advocacy:
+  - organization: "Arthur B McDonald Astroparticle Physics Institute"
+    position: "Highly Qualified Personnel (HQP) Advisory Committee Member"
+    startDate: "2024-01-01"
+    endDate: "present"
+    location: "Canada (remote)"
+    highlights:
+      - "Worked with members across Canada to develop opportunity lists for students and recent graduates."
+      - "Shared McDonald Institute opportunities with eligible HQP in BC and Alberta."
+    visible: true
+    
+  - organization: "Child Rights Connect"
+    position: "Advisory Team Member"
+    startDate: "2021-01-01"
+    endDate: "2023-12-31"
+    location: "Geneva, Switzerland (remote)"
+    highlights:
+      - "Provided guidance to UN delegations on communication strategies for high-level rights goals."
+      - "Presented to governments and consulted on international initiatives to support the UN Convention on the Rights of the Child."
+    visible: true
+    
+  - organization: "Organization of American States"
+    position: "Correspondent"
+    startDate: "2019-01-01"
+    endDate: "2020-12-31"
+    location: "Washington, DC (remote)"
+    highlights:
+      - "Created and edited content on human and child rights in the Americas."
+      - "Attended the 3rd Pan American Child and Youth Forum in Cartagena, Colombia with the Government of Canada."
+    visible: false
+
+experiences:
+  - name: "Quantum School for Young Students"
+    organization: "University of Waterloo and Institute for Quantum Computing"
+    description: "Participant in intensive quantum computing program"
+    visible: true
+    
+  - name: "Introduction to Quantum Computing"
+    organization: "IBM"
+    description: "Participant in 8-month course using IBM's quantum infrastructure"
+    visible: true
+    
+  - name: "Scientific Computing with Python certification"
+    organization: "freeCodeCamp"
+    description: "300 hours of training"
+    visible: true
+
+ui:
+  sections:
+    education: "Education"
+    work: "Work Experience" 
+    publications: "Publications and Presentations"
+    awards: "Honors and Awards"
+    advocacy: "Leadership and Advocacy"
+    skills: "Technical Skills"
+    experiences: "Additional Experience"
+  labels:
+    updated: "Updated"
+    page: "Page" 
+    at: "at"
+    present: "Present"
+    issued_by: "Issued by"
+    university: "The University of British Columbia"
