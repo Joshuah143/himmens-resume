@@ -1,17 +1,40 @@
 # Joshua Himmens Resume
 
-A resume system that generates multiple resume formats (academic and business) in different languages (English and French) from YAML content files.
+A system that generates multiple resume formats in different languages from structured YAML content.
 
-## Features
+## Public Information
 
-- Content-template separation using YAML files for content and Typst for formatting
-- Multiple languages support (English, French)
-- Multiple resume formats (academic, business)
-- Automated PDF generation with GitHub Actions
-- Link validation tests to ensure all URLs are valid
-- Dynamically generated Typst files for each combination of resume type and language
+### Available Resume Formats
 
-## Directory Structure
+- **Academic Resume**: [English](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_academic_resume.pdf) | [French](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_academic_resume_fr.pdf)
+- **Business Resume**: [English](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_business_resume.pdf) | [French](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_business_resume_fr.pdf)
+
+### Content Structure
+
+The resume content is stored in YAML files:
+- [English Content](https://github.com/Joshuah143/himmens-resume/blob/main/cv_content_en.yaml)
+- [French Content](https://github.com/Joshuah143/himmens-resume/blob/main/cv_content_fr.yaml)
+
+### How It Works
+
+This repository uses a content-template separation approach with:
+- YAML files storing structured content and UI text
+- [Typst](https://typst.app/) templates for academic and business formats
+- GitHub Actions for automated generation and publishing
+- Security through verifiable build provenance
+
+### Attribution
+
+- Academic resume template adapted from [ImpreCV](https://github.com/jskherman/imprecv)
+- While all content in my resume is my own authorship, large parts of this build system were generated with Claude 3.7
+
+---
+
+## Details for Maintainer
+
+*This section contains detailed information for maintaining and extending the system.*
+
+### Directory Structure
 
 - `cv_content_en.yaml` - English content file
 - `cv_content_fr.yaml` - French content file
@@ -23,9 +46,9 @@ A resume system that generates multiple resume formats (academic and business) i
 - `tests/` - Tests for validating resumes
 - `output/` - Generated PDF resume files
 
-## Usage
+### Build Commands
 
-### Building Resumes
+#### Building Resumes
 
 To build all resume formats in all languages:
 
@@ -52,7 +75,7 @@ uv run build.py --languages fr
 uv run build.py --types business --languages en
 ```
 
-### Development Mode
+#### Development Mode
 
 When working directly with Typst files, you can use dev mode to keep the temporary files:
 
@@ -71,62 +94,51 @@ make dev-business-fr
 
 The temporary files are created in the project root with names like `temp_academic_en.typ`. You can edit these files directly for quick development and testing.
 
-### Running Tests
+#### Testing and Cleaning
 
 ```bash
+# Run tests (will check links)
 make test
-# or
-uv run -m pytest -v tests/
-```
 
-### Clean Generated Files
+# Run tests in offline mode (skips actual URL validation)
+make test-offline
 
-```bash
+# Clean generated files
 make clean
+
+# Full release process (clean, build, test)
+make release
+
+# Simulate CI pipeline
+make ci-test
 ```
 
-### Adding Content
+### Content Structure
 
-1. Edit the YAML files:
-   - `cv_content_en.yaml` for English
-   - `cv_content_fr.yaml` for French
+The YAML content files contain:
+- Personal information
+- Education
+- Work experience
+- Publications
+- Awards
+- Skills
+- Advocacy/leadership
+- Additional experiences
+- UI text for localization
 
-2. The YAML structure includes:
-   - Personal information
-   - Education
-   - Work experience
-   - Publications
-   - Awards
-   - Skills
-   - Advocacy/leadership
-   - Additional experiences
-   - UI text for localization
+Use the `visible` or `show` flags to control which items appear in the resumes.
 
-3. Use the `visible` or `show` flags to control which items appear in the resumes
+### Template Customization
 
-### Customizing Templates
+Edit the template files in the `resume_templates/` directory:
+- `academic.typ` for academic resumes
+- `business.typ` for business resumes
 
-1. Edit the template files in the `resume_templates/` directory:
-   - `academic.typ` for academic resumes
-   - `business.typ` for business resumes
-
-2. Adjust formatting, fonts, colors, and sections as needed
-
-## How It Works
-
-The system uses a dynamic template approach:
-
-1. Content is stored in language-specific YAML files
-2. Templates are language-agnostic and read UI text from the content files
-3. The build script generates temporary Typst files for each combination of template and language
-4. Typst compiles these files into PDF resumes
-5. GitHub Actions automates the build and test process for CI/CD
-
-## Continuous Integration
+### Continuous Integration
 
 The project uses GitHub Actions for CI/CD with the following features:
 
-### PDF Generation
+#### PDF Generation
 
 When changes are pushed to the repository:
 
@@ -137,42 +149,10 @@ When changes are pushed to the repository:
    - In a separate "published" branch for direct GitHub access
    - As GitHub Releases (when merged to main branch)
 
-### Accessing Generated PDFs
-
-You can access the latest PDFs in any of these ways:
-
-1. **From the Releases page**: Visit the [Releases](../../releases) page to download specific versions
-2. **From the "published" branch**: Browse the `output/` directory in the [published branch](../../tree/published/output)
-3. **From Actions artifacts**: Find the most recent successful workflow run in [Actions](../../actions) and download the artifacts
-
-### Build Provenance and Security
+#### Build Provenance and Security
 
 For PDFs generated from the main branch, our CI pipeline uses GitHub's [Build Provenance](https://docs.github.com/en/actions/security-guides/using-build-attestations-with-github-actions) attestation to create cryptographically verifiable signatures. This ensures:
 
 - PDFs are built from the exact source code in the repository
 - The build process is traceable and tamper-evident
 - Chain of custody for the PDFs is maintained
-
-### Running CI Locally
-
-To simulate the CI process locally:
-
-```bash
-# Simulate the full CI pipeline (clean, build, test in offline mode)
-make ci-test
-
-# Run tests in offline mode (skips actual URL validation)
-make test-offline
-
-# Full release process (clean, build all formats, run tests with URL validation)
-make release
-
-# Just build and test with URL validation
-make test
-```
-
-## Credits
-
-Academic resume template adapted from [ImpreCV](https://github.com/jskherman/imprecv).
-
-While all content in my resume is my own authorship, large parts of this build system were generated with Claude 3.7.
