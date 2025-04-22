@@ -163,6 +163,11 @@ To verify attestations of downloaded PDFs, use:
 gh attestation verify <pdf-file> --repo joshuah143/himmens-resume
 ```
 
+**Note:** Attestation requires proper repository permissions. Make sure the repository settings allow GitHub Actions to create attestations by:
+1. Going to Settings → Actions → General → Workflow permissions
+2. Enabling "Read and write permissions" 
+3. Checking "Allow GitHub Actions to create and approve pull requests"
+
 #### Repository Organization
 
 The repository uses a branch structure where:

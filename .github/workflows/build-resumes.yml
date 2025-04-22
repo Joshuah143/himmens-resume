@@ -97,11 +97,21 @@ jobs:
           name: resumes
           path: output/*.pdf
           
+      - name: Debug token permissions
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Workflow permissions: ${{ toJSON(github.permissions) }}"
+          
       - name: Generate build provenance for PDFs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/attest-build-provenance@v1
         with:
           subject-path: output/*.pdf
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           
       # Only create release when pushed to main branch
       - name: Create Release
