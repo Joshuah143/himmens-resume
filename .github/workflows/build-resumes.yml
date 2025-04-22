@@ -32,10 +32,33 @@ jobs:
       
       - name: Install Typst
         run: |
+          # Download and extract typst
+          echo "Downloading Typst..."
           curl -L -o typst.tar.xz https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz
+          
+          echo "Extracting archive..."
           tar -xvf typst.tar.xz
-          chmod +x typst
-          mv typst /usr/local/bin/
+          
+          # Check if typst binary exists in the expected location
+          if [ ! -f "typst-x86_64-unknown-linux-musl/typst" ]; then
+            echo "Typst binary not found in expected location!"
+            echo "Contents of extracted archive:"
+            find . -name "typst*" -type f
+            exit 1
+          fi
+          
+          # Install typst binary
+          echo "Installing Typst..."
+          chmod +x typst-x86_64-unknown-linux-musl/typst
+          sudo mv typst-x86_64-unknown-linux-musl/typst /usr/local/bin/
+          
+          # Clean up downloaded files
+          echo "Cleaning up..."
+          rm -rf typst.tar.xz typst-x86_64-unknown-linux-musl
+          
+          # Verify installation
+          echo "Verifying installation..."
+          typst --version
       
       - name: Setup Python
         uses: actions/setup-python@v5
