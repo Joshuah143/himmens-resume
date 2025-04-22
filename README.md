@@ -145,6 +145,14 @@ You can access the latest PDFs in any of these ways:
 2. **From the "published" branch**: Browse the `output/` directory in the [published branch](../../tree/published/output)
 3. **From Actions artifacts**: Find the most recent successful workflow run in [Actions](../../actions) and download the artifacts
 
+### Build Provenance and Security
+
+For PDFs generated from the main branch, our CI pipeline uses GitHub's [Build Provenance](https://docs.github.com/en/actions/security-guides/using-build-attestations-with-github-actions) attestation to create cryptographically verifiable signatures. This ensures:
+
+- PDFs are built from the exact source code in the repository
+- The build process is traceable and tamper-evident
+- Chain of custody for the PDFs is maintained
+
 ### Running CI Locally
 
 To simulate the CI process locally:
@@ -166,3 +174,5 @@ make test
 ## Credits
 
 Academic resume template adapted from [ImpreCV](https://github.com/jskherman/imprecv).
+
+While all content in my resume is my own authorship, large parts of this build system were generated with Claude 3.7.
