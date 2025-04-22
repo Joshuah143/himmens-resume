@@ -1,0 +1,110 @@
+personal:
+  name: Joshua Himmens
+  email: joshua@himmens.com
+  phone: 587-434-0118
+  url: https://himmens.com
+  titles:
+    - Étudiant en Génie Physique
+  profiles:
+    - network: LinkedIn
+      username: Joshua Himmens
+      url: https://linkedin.com/in/joshua-himmens
+    - network: GitHub
+      username: joshuah143
+      url: https://github.com/joshuah143
+
+education:
+  institution: Université de la Colombie-Britannique
+  studyType: Baccalauréat en Sciences Appliquées
+  area: Génie Physique
+  startDate: 2023-09-01
+  endDate: 2028-05-01
+  location: Vancouver, CB, Canada
+  gpa: "92% (A+)"
+  honors:
+    - "Liste d'honneur du doyen"
+  highlights:
+    - "Moyenne de première année de 92% (A+)"
+    - "Connaissance pratique de l'anglais et du français"
+
+work:
+  - organization: AltaML
+    show: true
+    url: "https://himmens.com/altaml"
+    location: ""
+    positions:
+      - position: Développeur en Apprentissage Automatique Associé
+        show: true
+        startDate: 2025-01-01
+        endDate: 2025-04-01
+        highlights: []
+
+  - organization: TRIUMF
+    show: true
+    url: "https://himmens.com/triumf"
+    location: ""
+    positions:
+      - position: Étudiant Chercheur en Apprentissage Profond pour ATLAS
+        show: true
+        startDate: 2024-05-01
+        endDate: 2025-02-20
+        highlights:
+          - Développement de modèles de segmentation panoptique pour le détecteur ATLAS utilisant le cadre d'apprentissage automatique PointNet avec Wandb, TensorFlow, Keras.
+          - Utilisation de l'infrastructure informatique du CERN pour paralléliser les calculs sur des milliers de nœuds.
+          - Travail indépendant pour développer des modèles utilisant des approches de transfert d'apprentissage de pointe.
+          - Mise en œuvre de modèles en production avec NVIDIA Triton.
+
+  - organization: UBC Orbit Équipe de Conception de Satellites
+    show: true
+    url: "https://himmens.com/orbit"
+    location: ""
+    positions:
+      - position: Responsable de la Commande et du Traitement des Données (CDH) et Développeur de Firmware
+        show: true
+        startDate: 2023-10-01
+        endDate: "present"
+        highlights:
+          - Direction de l'équipe CDH pour développer des logiciels répondant aux objectifs de mission et de test de l'ESA (Agence Spatiale Européenne) pour le projet ALEASAT.
+          - "Gestion d'une équipe de *10* développeurs de firmware, avec plus de *\\$15 000* d'infrastructure technique."
+          - Développement de procédures de test de mission, de test fonctionnel et de test d'acceptation pour répondre aux normes ESA et ECSS.
+          - Programmation de pilotes de périphériques et d'équipements de support au sol électriques (EGSE).
+
+skills:
+  - title: "Apprentissage Automatique"
+    description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX"
+    visible: true
+  - title: "Programmation Embarquée"
+    description: "Expérience avec FreeRTOS sur TMS570, RP2040 et STM32"
+    visible: true
+  - title: "Développement Logiciel"
+    description: "C, C++, Python, Java, MATLAB, Bash, Git"
+    visible: true
+  - title: "Physique des Particules"
+    description: "Root, calcul sur grille du CERN, Athena"
+    visible: true
+
+publications:
+  - name: "Développement de Techniques d'Apprentissage Automatique pour le Flux de Particules dans l'Expérience ATLAS"
+    publisher: "Concours de Présentations des Étudiants d'Été en Physique des Astroparticules Canadiennes (CASST 2024)"
+    releaseDate: "2024-06-01"
+    url: "https://himmens.com/publications/casst2024"
+    highlights:
+      - "Classé 2e sur 44 présentations"
+    visible: true
+
+ui:
+  sections:
+    education: "Formation"
+    work: "Expérience Professionnelle" 
+    publications: "Publications et Présentations"
+    awards: "Prix et Distinctions"
+    advocacy: "Leadership et Engagement"
+    skills: "Compétences Techniques"
+    experiences: "Expériences Complémentaires"
+  labels:
+    updated: "Mis à jour"
+    page: "Page" 
+    at: "à"
+    present: "Présent" 
+    issued_by: "Décerné par"
+    university: "l'Université de la Colombie-Britannique"
