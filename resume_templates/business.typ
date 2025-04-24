@@ -2,157 +2,58 @@
 
 // Business resume template (language-agnostic)
 #let business_template(content) = {
-  let uservars = (
-      headingfont: "New Computer Modern",
-      bodyfont: "New Computer Modern",
-      fontsize: 10pt,
-      linespacing: 6pt,
-      sectionspacing: 0pt,
-      showAddress: true,
-      showNumber: true,
-      showTitle: true,
-      headingsmallcaps: false,
-      breakable: false,
-  )
-
   // Get UI text from content file
   let ui = content.ui
-
-  set page(
-      paper: "us-letter",
-      margin: 1.25cm,
-      footer: [
-          #set text(size: 8pt)
-          #grid(
-              columns: (1fr, 1fr),
-              align(left)[#ui.labels.updated: #datetime.today().display("[year]-[month]-[day]")],
-              align(right)[#ui.labels.page 1/1]
-          )
-      ],
-  )
-
-  set text(
-      font: uservars.bodyfont,
-      size: uservars.fontsize,
-      hyphenate: false,
-  )
-
+  
+  // Define colors
   let ubcblue = rgb("#002145")
+  
+  // Set font styling
   show link: underline
-
+  set text(fallback: false)
+  set text(font: "Open Sans", size: 11pt)
   show text.where(weight: "bold"): set text(fill: ubcblue)
   show text.where(weight: "regular"): set text(fill: rgb("#333333"))
   set grid.cell(align: top + left)
-
+  
+  // Set heading styling
   show heading: it => [
     #text(fill: ubcblue)[#it.body] #box(width: 1fr, line(length: 100%, stroke: ubcblue + 0.5pt))
+    \
   ]
 
-  // Job function definition
-  let job = (title: "", 
-            company: "", 
-            description: "",
-            date: "", 
-            actions: [],
-            site: "",
-            visible: true) => {
-    if (visible) [ 
-      #text(weight: "bold")[#title] \
-      #company | #date 
-      #if site != "" [
-        | #site 
-      ]\ 
-      #if description != "" [
-        #description \
-      ]
-      #for action in actions [
-        - #action \
-      ]
-    ]
-  }
-
-  // Split job function definition
-  let split_job = (title: "", 
-            company: "", 
-            description: "",
-            date: "", 
-            actions: [],
-            site: "",
-            visible: true) => {
-    if (visible) {
-      grid(columns: (1.7fr, 3fr), column-gutter: 10pt, row-gutter: 0pt,
-        [ #text(weight: "bold")[#title] \
-        #company \
-        #date \ 
-        #if site != "" [
-        #link(site) \
-      ] ],
-        [#if description != "" [
-        #description \
-      ]
-        #for action in actions [
-          - #action \
-        ]]
-      )
-    }
-  }
-
-  // Award function definition
-  let award = (title: "", 
-             organization: "", 
-             date: "", 
-             description: [],
-             visible: true) => {
-    if (visible) [
-      #text(weight:"bold")[#title] | #date \
-      #for d in description [
-        #d \
-      ]
-    ]
-  }
-
-  // Skill function definition
-  let skill = (title: "", 
-             description: "",
-             visible: true) => {
-    if (visible) [
-      #text(weight:"bold")[#title] | #description \
-    ]
-  }
-
-  // Achievement function definition
-  let achievement = (focus: "", 
-                    description: "",
-                    visible: true) => {
-    if (visible) [
-      - #text(weight:"bold")[#focus] #description \
-    ]
-  }
-
+  // Set page layout
+  set page(
+    paper: "us-letter",
+    margin: (x: 0.82in, y: 0.9in),
+    footer: grid(columns: (50%, 50%), image("../assets/cooplogo.png"), grid.cell(align: right+horizon)[#text(font: "Open Sans", weight: "bold")[science.coop\@ubc.ca | 604-822-9677]])
+  )
+  
   // Begin actual resume
   align(center)[
-    #text(size: 17pt, font: "New Computer Modern", weight: "bold")[#content.personal.name] \
+    #text(size: 17pt, font: "Open Sans", weight: "bold")[#content.personal.name] \
     #link("mailto:" + content.personal.email)[#content.personal.email] | #content.personal.phone | #link(content.personal.url)[#content.personal.url.split("//").at(1)] \
     #text(weight: "bold")[#content.personal.titles.at(0)] #ui.labels.at #ui.labels.university \
+    #text(weight: "bold")[#content.education.gpa] Average | #text(weight: "bold")[English], #text(weight: "bold")[French] (Working Knowledge) | #link("https://github.com/Joshuah143")[Github/Joshuah143]
   ]
-
+  
   // Skills section
   [= #ui.sections.skills]
-
+  
   for skill_item in content.skills {
     if skill_item.visible [
       #text(weight: "bold")[#skill_item.title] | #skill_item.description \
     ]
   }
-
+  
   // Work experience section
   [= #ui.sections.work]
-
+  
   for org in content.work {
     if org.show {
       for position in org.positions {
         if position.show [
-          #text(weight: "bold")[#position.position]
+          #text(weight: "bold")[#position.position] \
           #org.organization | #utils.strpdate(position.startDate) #sym.dash.en #if position.endDate == "present" { ui.labels.present } else { utils.strpdate(position.endDate) }
           #if org.url != "" [
             | #link(org.url)[#org.url.split("//").at(1)]
@@ -164,86 +65,68 @@
       }
     }
   }
-
+  
   // Publications section
   [= #ui.sections.publications]
-
+  
+  // Publications and Presentations
   if "publications" in content {
     for pub in content.publications {
       if pub.visible != false [
-        #text(weight: "bold")[#pub.name] #ui.labels.at #pub.publisher #h(1fr) #utils.strpdate(pub.releaseDate) \
-        #if "highlights" in pub and pub.highlights != none {
-          for highlight in pub.highlights [
-            - #highlight \
-          ]
-        }
+        #text(weight: "bold")[#pub.name] \
+        #pub.publisher #h(1fr) #utils.strpdate(pub.releaseDate) \
+      ]
+      
+      if "highlights" in pub and pub.highlights != none {
+        for highlight in pub.highlights [
+          - #highlight \
+        ]
+      } else [
+
       ]
     }
   }
-
+  
   // Awards section
   [= #ui.sections.awards]
-
+  
   if "awards" in content {
     for award_item in content.awards {
       if award_item.visible [
-        #text(weight: "bold")[#award_item.title]
-        | #utils.strpdate(award_item.date) \
-        #for highlight in award_item.highlights [
-          #highlight \
-        ]
+        #text(weight: "bold")[#award_item.title] | #utils.strpdate(award_item.date) \
+        #for highlight in award_item.highlights [#highlight] \
       ]
     }
   }
-
+  
   // Advocacy section
   [= #ui.sections.advocacy]
-
+  
   if "advocacy" in content {
     for role in content.advocacy {
-      if role.visible != false [
-        split_job(
-          title: role.position,
-          company: role.organization,
-          date: utils.strpdate(role.startDate) + " - " + (if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) }),
-          actions: role.highlights,
-          visible: true
+      if role.visible != false {
+        grid(columns: (1.7fr, 3fr), column-gutter: 10pt, row-gutter: 0pt,
+          [ #text(weight: "bold")[#role.position] \
+          #role.organization \
+          #utils.strpdate(role.startDate) #sym.dash.en #if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) } \
+          ],
+          [
+            #for highlight in role.highlights [
+              - #highlight \
+            ]
+          ]
         )
-      ]
+      }
     }
-  } else {
-    split_job(
-      title: "Highly Qualified Personnel (HQP) Advisory Committee Member",
-      company: "Arthur B McDonald Astroparticle Physics Institute",
-      date: "2024 - Present",
-      actions: (
-        "Worked with members across Canada to develop opportunity lists for students and recent graduates.", 
-        "Shared McDonald Institute opportunities with eligible HQP in BC and Alberta."),
-      visible: true
-    )
-
-    split_job(
-      title: "Advisory Team Member",
-      company: "Child Rights Connect",
-      date: "2021 - 2023",
-      actions: (
-        "Provided guidance to UN delegations on communication strategies for high-level rights goals.", 
-        "Presented to governments and consulted on international initiatives to support the UN Convention on the Rights of the Child."),
-      visible: true
-    )
   }
-
+  
   // Experiences section
   [= #ui.sections.experiences]
-
+  
   if "experiences" in content {
     for exp in content.experiences {
       if exp.visible [
-        achievement(
-          focus: "\"" + exp.name + "\"",
-          description: exp.description,
-          visible: true
-        )
+        - #text(weight: "bold")["#exp.name"] #exp.description \
       ]
     }
   }
