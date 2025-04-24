@@ -96,10 +96,21 @@
                   }
               }
               
-              #profiles.join([#sym.space.en #sym.diamond.filled #sym.space.en])
+              #pad(x: 0em)[
+         #profiles.join([#sym.space.en | #sym.space.en])
+     ]
           ]
       ]
   ]
+
+  // Skills
+  [== #ui.sections.skills]
+  
+  for skill in content.skills {
+    if skill.visible [
+      - *#skill.title*: #skill.description
+    ]
+  }
 
   // Education
   [== #ui.sections.education]
@@ -121,7 +132,7 @@
   for w in content.work {
       if w.show != true { continue }
         
-      [*#w.organization* #h(1fr) *#w.location*]
+      [*#w.organization* #h(1fr) *#w.location* \ ]
           
       // Create a block layout for each work entry
       let index = 0
@@ -133,12 +144,8 @@
               // Line 2: Position and Date Range
               #text(style: "italic")[#p.position] #h(1fr) #utils.strpdate(p.startDate) #sym.dash.en #if p.endDate == "present" { ui.labels.present } else { utils.strpdate(p.endDate) }
           ]
-              
           // Highlights or Description
-          for hi in p.highlights [
-              - #eval(hi, mode: "markup")
-          ]
-              
+          for hi in p.highlights [- #eval(hi, mode: "markup")]
           index = index + 1
       }
   }
@@ -149,14 +156,17 @@
     
     for pub in content.publications {
       if pub.visible != false [
-        #text(weight: "bold")[#pub.name] #ui.labels.at #pub.publisher #h(1fr) #utils.strpdate(pub.releaseDate) \
+        #text(weight: "bold")[#pub.name] \
+        #pub.publisher #h(1fr) #utils.strpdate(pub.releaseDate) \
       ]
       
       if "highlights" in pub and pub.highlights != none {
         for highlight in pub.highlights [
           - #highlight \
         ]
-      }
+      } else [
+
+      ]
     }
   }
 
@@ -176,16 +186,13 @@
           ] else [
               *#award.title* \
           ]
-          
           // Line 2: Issuer and Date
           #ui.labels.issued_by #text(style: "italic")[#award.issuer] #h(1fr) #date \
         ]
         
         // Summary or Description
         if "highlights" in award and award.highlights != none {
-          for hi in award.highlights [
-              - #eval(hi, mode: "markup")
-          ]
+          for hi in award.highlights [ - #eval(hi,  mode: "markup")]
         }
       }
     }
@@ -206,15 +213,6 @@
         - #highlight \
       ]
     }
-  }
-
-  // Skills
-  [== #ui.sections.skills]
-  
-  for skill in content.skills {
-    if skill.visible [
-      - *#skill.title*: #skill.description
-    ]
   }
 
   // Experiences
