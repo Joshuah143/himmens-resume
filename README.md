@@ -176,3 +176,11 @@ The repository uses a branch structure where:
 - `published`: Contains the built PDF artifacts
 
 When making changes, work on the `develop` branch and merge to `main` when ready to publish.
+
+- Add more detial on bullet pounts
+  - tech, bootcamp, product work
+  - aim for 3 to 4, 2 lines per point is ok
+- Update award date
+- award can be shortened 
+- Move advocy above publications 
+- its ok that the awards are in interview more than resume, plus cover letter

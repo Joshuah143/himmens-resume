@@ -21,11 +21,10 @@ education:
   endDate: 2028-05-01
   location: Vancouver, BC, Canada
   gpa: "92% (A+)"
-  honors:
-    - "Dean's Honor List"
+  honors: []
   highlights:
-    - "First-year average of 92% (A+)"
     - "Working knowledge of English and French"
+    - "Dean's Honor List (all years)"
 
 work:
   - organization: AltaML
@@ -36,11 +35,11 @@ work:
       - position: Associate Machine Learning Developer
         show: true
         startDate: 2025-01-01
-        endDate: 2025-05-01
+        endDate: 2025-04-01
         highlights: 
-          - "Developed machine learning models using Scikit-learn to save the Government of Alberta *>\\$4 million* anualy."
+          - "Developed machine learning models using Scikit-learn to save the Government of Alberta *>\\$4 million* annually."
+          - "Developed novel evaluation metrics to minimize regional bias and maximize transferability of models."
           - "Created training pipelines using Azure ML and Azure App Service."
-          - "Worked with fine-tuned LLM's, clasical ML, and OpenAI models."
 
   - organization: TRIUMF
     show: true
@@ -67,7 +66,7 @@ work:
         endDate: "present"
         highlights:
           - Led the CDH team to develop software to meet mission and testing objectives from ESA (European Space Agency) for the ALEASAT project.
-          - "Managed a team of *16* firmware developers, with over *\\$15 000* worth of technical infastructure."
+          - "Managed a team of *16* firmware developers, with over *\\$15 000* worth of technical infrastructure."
           - Developed mission testing, function testing, and acceptance testing procedures to meet ESA and ECSS standards.
           - Programmed device drivers and electrical ground support equipment (EGSE).
       - position: Embedded Firmware Developer
