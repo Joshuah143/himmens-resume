@@ -20,13 +20,14 @@
 
   set page(
       paper: "us-letter",
-      margin: 1.25cm,
-      footer: [
-          #set text(size: 8pt)
+      margin: 1in,
+      footer: context [
+          #set text(size: 11pt)
           #grid(
               columns: (1fr, 1fr),
               align(left)[#ui.labels.updated: #datetime.today().display("[year]-[month]-[day]")],
-              align(right)[#ui.labels.page 1/1]
+              align(right)[#ui.labels.page 
+              #counter(page).display("1/1", both: true)]
           )
       ],
   )
@@ -45,7 +46,7 @@
   set grid.cell(align: top + left)
 
   show heading: it => [
-    #text(fill: ubcblue)[#it.body] #box(width: 1fr, line(length: 100%, stroke: ubcblue + 0.5pt))
+    #text(fill: ubcblue)[#it.body] #box(width: 1fr, line(length: 100%, stroke: ubcblue + 0.5pt)) \
   ]
 
   // Job function definition
@@ -131,13 +132,13 @@
 
   // Begin actual resume
   align(center)[
-    #text(size: 17pt, font: "New Computer Modern", weight: "bold")[#content.personal.name] \
-    #link("mailto:" + content.personal.email)[#content.personal.email] | #content.personal.phone | #link(content.personal.url)[#content.personal.url.split("//").at(1)] \
-    #text(weight: "bold")[#content.personal.titles.at(0)] #ui.labels.at #ui.labels.university \
+    #text(size: 18pt, font: "New Computer Modern", weight: "bold")[#content.personal.name] \
+    #link("mailto:" + content.personal.email)[#content.personal.email] | #content.personal.phone | #link(content.personal.url)[#content.personal.url.split("//").at(1)] | #link("https://github.com/joshuah143")[github.com/joshuah143] \
+    #text(weight: "bold")[#content.personal.titles.at(0)] \
   ]
 
   // Skills section
-  [= #ui.sections.skills]
+  [= #eval(ui.sections.skills, mode: "markup")]
 
   for skill_item in content.skills {
     if skill_item.visible [
@@ -152,7 +153,7 @@
     if org.show {
       for position in org.positions {
         if position.show [
-          #text(weight: "bold")[#position.position]
+          #text(weight: "bold")[#position.position] \
           #org.organization | #utils.strpdate(position.startDate) #sym.dash.en #if position.endDate == "present" { ui.labels.present } else { utils.strpdate(position.endDate) }
           #if org.url != "" [
             | #link(org.url)[#org.url.split("//").at(1)]
@@ -181,28 +182,14 @@
     }
   }
 
-  // Awards section
-  [= #ui.sections.awards]
-
-  if "awards" in content {
-    for award_item in content.awards {
-      if award_item.visible [
-        #text(weight: "bold")[#award_item.title]
-        | #utils.strpdate(award_item.date) \
-        #for highlight in award_item.highlights [
-          #highlight \
-        ]
-      ]
-    }
-  }
-
+  pagebreak()
   // Advocacy section
   [= #ui.sections.advocacy]
 
   if "advocacy" in content {
     for role in content.advocacy {
       if role.visible != false [
-        split_job(
+        #split_job(
           title: role.position,
           company: role.organization,
           date: utils.strpdate(role.startDate) + " - " + (if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) }),
@@ -211,26 +198,6 @@
         )
       ]
     }
-  } else {
-    split_job(
-      title: "Highly Qualified Personnel (HQP) Advisory Committee Member",
-      company: "Arthur B McDonald Astroparticle Physics Institute",
-      date: "2024 - Present",
-      actions: (
-        "Worked with members across Canada to develop opportunity lists for students and recent graduates.", 
-        "Shared McDonald Institute opportunities with eligible HQP in BC and Alberta."),
-      visible: true
-    )
-
-    split_job(
-      title: "Advisory Team Member",
-      company: "Child Rights Connect",
-      date: "2021 - 2023",
-      actions: (
-        "Provided guidance to UN delegations on communication strategies for high-level rights goals.", 
-        "Presented to governments and consulted on international initiatives to support the UN Convention on the Rights of the Child."),
-      visible: true
-    )
   }
 
   // Experiences section
@@ -239,11 +206,26 @@
   if "experiences" in content {
     for exp in content.experiences {
       if exp.visible [
-        achievement(
+        #achievement(
           focus: "\"" + exp.name + "\"",
           description: exp.description,
           visible: true
         )
+      ]
+    }
+  }
+
+   // Awards section
+  [= #ui.sections.awards]
+
+  if "awards" in content {
+    for award_item in content.awards {
+      if award_item.visible [
+        #text(weight: "bold")[#award_item.title]
+        #h(1fr) #utils.strpdate(award_item.date) \
+        #for highlight in award_item.highlights [
+          #highlight \
+        ]
       ]
     }
   }

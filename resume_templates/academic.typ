@@ -21,12 +21,14 @@
   set page(
       paper: "us-letter",
       margin: 1.25cm,
-      footer: [
+      footer: context [
           #set text(size: 8pt)
           #grid(
               columns: (1fr, 1fr),
               align(left)[#ui.labels.updated: #datetime.today().display("[year]-[month]-[day]")],
-              align(right)[#ui.labels.page 1/1]
+              align(right)[#ui.labels.page #counter(page).display(
+                "1/1", both: true,
+              )]
           )
       ],
   )
@@ -96,7 +98,7 @@
                   }
               }
               
-              #profiles.join([#sym.space.en #sym.diamond.filled #sym.space.en])
+              #profiles.join([#sym.space.thin #sym.diamond.filled #sym.space.thin])
           ]
       ]
   ]
@@ -121,7 +123,9 @@
   for w in content.work {
       if w.show != true { continue }
         
-      [*#w.organization* #h(1fr) *#w.location*]
+      [
+        *#w.organization* #h(1fr) *#w.location* #linebreak()
+      ]
           
       // Create a block layout for each work entry
       let index = 0
@@ -172,11 +176,9 @@
         [
           // Line 1: Award Title and Value
           #if "value" in award and award.value != none [
-              *#award.title* (\$#award.value) \
-          ] else [
-              *#award.title* \
+              *#award.title* (\$#award.value) #linebreak()] else [
+              *#award.title* #linebreak()
           ]
-          
           // Line 2: Issuer and Date
           #ui.labels.issued_by #text(style: "italic")[#award.issuer] #h(1fr) #date \
         ]
@@ -197,13 +199,13 @@
     
     for role in content.advocacy {
       if role.visible != false [
-        #text(weight: "bold")[#role.position] \
+        #text(weight: "bold")[#role.position] #linebreak()
         #role.organization #h(1fr) #role.location \
         #utils.strpdate(role.startDate) #sym.dash.en #if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) } \
       ]
       
       for highlight in role.highlights [
-        - #highlight \
+        - #eval(highlight, mode: "markup") \
       ]
     }
   }
