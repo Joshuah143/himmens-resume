@@ -105,6 +105,7 @@ ui:
     updated: "Mis à jour"
     page: "Page" 
     at: "à"
+    in: "en"
     present: "Présent" 
     issued_by: "Décerné par"
     university: "l'Université de la Colombie-Britannique"

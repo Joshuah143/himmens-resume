@@ -24,8 +24,8 @@ education:
   honors:
     - "Dean's Honor List (all years)"
   highlights:
-    - "Working knowledge of English and French"
-    - "Specialized in entrepreneurship, machine learning, and embedded systems"
+    - "Working knowledge of English and French."
+    - "Specialized in entrepreneurship, machine learning, and embedded systems."
 
 work:
   - organization: AltaML
@@ -38,7 +38,7 @@ work:
         startDate: 2025-01-01
         endDate: 2025-04-01
         highlights: 
-          - "Developed machine learning models using Scikit-learn to save the Government of Alberta *>\\$4 million* annually."
+          - "Developed machine learning models using scikit-learn to save the Government of Alberta *>\\$4 million* annually."
           - "Developed novel evaluation metrics to minimize regional bias and maximize transferability of models."
 
   - organization: TRIUMF
@@ -51,10 +51,10 @@ work:
         startDate: 2024-05-01
         endDate: 2025-02-20
         highlights:
-          - Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with Wandb, TensorFlow, Keras.
+          - Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with wandb, TensorFlow, Keras.
           - Used CERN's grid computing to parallelize compute across thousands of nodes.
-          - Worked independently to develop models using cutting edge transfer learning approaches.
-          - Implementing models into production using NVIDIA Triton.
+          - Worked independently to develop models using cutting-edge transfer learning approaches.
+          - Implemented models into production using NVIDIA Triton.
 
   - organization: UBC Orbit Satellite Design Team
     show: true
@@ -77,7 +77,7 @@ work:
         highlights:
           - Programmed device drivers, electrical ground support equipment (EGSE).
           - Developed the ALEASAT Avionics Test Bench (FlatSat).
-          - Worked on the ALEASAT onboard computer for launch in Q1 2026.
+          - Worked on the ALEASAT onboard computing system using FreeRTOS on a TMS570 microcontroller.
 
   - organization: NumPy
     show: false
@@ -217,7 +217,7 @@ skills:
     description: "Used Qiskit to simulate quantum algorithms."
     visible: false
   - title: "Particle Physics"
-    description: "Root, CERN grid compute, Athena"
+    description: "ROOT, CERN grid computing, Athena"
     visible: true
 
 publications:
@@ -226,10 +226,10 @@ publications:
     releaseDate: "2024-06-01"
     url: "https://himmens.com/publications/casst2024"
     highlights:
-      - "Placed 2nd of 44 presentations"
+      - "Placed 2nd of 44 presentations."
     visible: true
     
-  - name: "JetPointnet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment"
+  - name: "JetPointNet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment"
     publisher: "Canadian Undergraduate Physics Conference"
     releaseDate: "2024-10-01"
     url: "https://himmens.com/publications/cupc2024"
@@ -242,7 +242,7 @@ publications:
     visible: true
     
   - name: "ALEASAT ESA \"Fly Your Satellite!\" Training Week Presentation"
-    publisher: "European Space Agency's ESEC-GALAXIA (Transinne Belgium)"
+    publisher: "European Space Agency's ESEC-GALAXIA (Transinne, Belgium)"
     releaseDate: "2024-03-01"
     url: "https://himmens.com/publications/esa2024"
     visible: true
@@ -255,8 +255,8 @@ advocacy:
     endDate: "present"
     location: "Vancouver"
     highlights:
-      - "Served as *Technical Program Chair* for the Student Aerospace Summit, September 2025"
-      - "Organized events to unify aerospace-interested students across UBC"
+      - "Served as *Technical Program Chair* for the Student Aerospace Summit, September 2025."
+      - "Organized events to unify aerospace-interested students across UBC."
     visible: true
 
   - organization: "Arthur B McDonald Astroparticle Physics Institute"
@@ -318,6 +318,7 @@ ui:
     updated: "Updated"
     page: "Page" 
     at: "at"
+    in: "in"
     present: "Present"
     issued_by: "Issued by"
     university: "The University of British Columbia"

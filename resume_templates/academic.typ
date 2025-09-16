@@ -1,4 +1,5 @@
 #import "utils.typ"
+#let show_amounts = false
 
 // Academic resume template (language-agnostic)
 #let academic_template(content) = {
@@ -108,7 +109,7 @@
   
   [
     *#content.education.institution* #h(1fr) *#content.education.location* \
-    #text(style: "italic")[#content.education.studyType] #ui.labels.at #content.education.area #h(1fr) #utils.strpdate(content.education.startDate) #sym.dash.en #utils.strpdate(content.education.endDate) \
+    #text(style: "italic")[#content.education.studyType] #ui.labels.in #content.education.area #h(1fr) #utils.strpdate(content.education.startDate) #sym.dash.en #utils.strpdate(content.education.endDate) \
   ]
   
   if "highlights" in content.education {
@@ -175,7 +176,7 @@
         
         [
           // Line 1: Award Title and Value
-          #if "value" in award and award.value != none [
+          #if ("value" in award and award.value != none) and show_amounts [
               *#award.title* (\$#award.value) #linebreak()] else [
               *#award.title* #linebreak()
           ]
