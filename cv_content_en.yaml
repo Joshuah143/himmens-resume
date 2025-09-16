@@ -211,7 +211,7 @@ skills:
     description: "Experienced with FreeRTOS on TMS570, RP2040, and STM32"
     visible: true
   - title: "Software Development"
-    description: "C, C++, Python, Java, MATLAB, Bash, Git"
+    description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git, Bash"
     visible: true
   - title: "Quantum Computing"
     description: "Used Qiskit to simulate quantum algorithms."

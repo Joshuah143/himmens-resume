@@ -19,13 +19,13 @@ education:
   area: Génie Physique
   startDate: 2023-09-01
   endDate: 2028-05-01
-  location: Vancouver, CB, Canada
+  location: Vancouver, C.-B., Canada
   gpa: "92% (A+)"
   honors:
-    - "Liste d'honneur du doyen"
+    - "Liste d'honneur du doyen (toutes les années)"
   highlights:
-    - "Moyenne de première année de 92% (A+)"
-    - "Connaissance pratique de l'anglais et du français"
+    - "Connaissance pratique de l'anglais et du français."
+    - "Spécialisation en entrepreneuriat, apprentissage automatique et systèmes embarqués."
 
 work:
   - organization: AltaML
@@ -37,7 +37,9 @@ work:
         show: true
         startDate: 2025-01-01
         endDate: 2025-04-01
-        highlights: []
+        highlights:
+          - "Développé des modèles d'apprentissage automatique avec scikit-learn permettant d'économiser au gouvernement de l'Alberta *>\\$4 million* par an."
+          - "Conçu de nouvelles métriques d'évaluation pour minimiser les biais régionaux et maximiser la transférabilité des modèles."
 
   - organization: TRIUMF
     show: true
@@ -49,7 +51,7 @@ work:
         startDate: 2024-05-01
         endDate: 2025-02-20
         highlights:
-          - Développement de modèles de segmentation panoptique pour le détecteur ATLAS utilisant le cadre d'apprentissage automatique PointNet avec Wandb, TensorFlow, Keras.
+          - Développement de modèles de segmentation panoptique pour le détecteur ATLAS utilisant le cadre d'apprentissage automatique PointNet avec wandb, TensorFlow, Keras.
           - Utilisation de l'infrastructure informatique du CERN pour paralléliser les calculs sur des milliers de nœuds.
           - Travail indépendant pour développer des modèles utilisant des approches de transfert d'apprentissage de pointe.
           - Mise en œuvre de modèles en production avec NVIDIA Triton.
@@ -64,10 +66,143 @@ work:
         startDate: 2023-10-01
         endDate: "present"
         highlights:
-          - Direction de l'équipe CDH pour développer des logiciels répondant aux objectifs de mission et de test de l'ESA (Agence Spatiale Européenne) pour le projet ALEASAT.
+          - Direction de l'équipe CDH pour développer des logiciels répondant aux objectifs de mission et de test de l'ESA (Agence spatiale européenne) pour le projet ALEASAT.
           - "Gestion d'une équipe de *10* développeurs de firmware, avec plus de *\\$15 000* d'infrastructure technique."
           - Développement de procédures de test de mission, de test fonctionnel et de test d'acceptation pour répondre aux normes ESA et ECSS.
-          - Programmation de pilotes de périphériques et d'équipements de support au sol électriques (EGSE).
+          - Programmation de pilotes de périphériques et d'équipements de soutien au sol électriques (EGSE).
+
+      - position: Développeur de Firmware Embarqué
+        show: true
+        startDate: 2023-01-01
+        endDate: "present"
+        highlights:
+          - Programmation de pilotes de périphériques et d'équipements de soutien au sol électriques (EGSE).
+          - Développement du banc d'essai avionique ALEASAT (FlatSat).
+          - Travail sur l'ordinateur de bord ALEASAT en vue d'un lancement au 1er trimestre 2026.
+
+  - organization: NumPy
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: Contributeur Open Source
+        show: true
+        startDate: 2021-01-01
+        endDate: 2021-12-31
+        highlights:
+          - Contribution à l'outil open source d'analyse numérique comptant 86 millions de téléchargements mensuels.
+
+  - organization: Élections Alberta
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: Agent électoral
+        show: true
+        startDate: 2023-01-01
+        endDate: 2023-12-31
+        highlights:
+          - Intégration au sein d'une équipe pour assurer le déroulement sûr et équitable de l'élection provinciale.
+          - Gestion des interactions avec le public et du dépouillement des votes.
+
+  - organization: Western Canada High School
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: Élève du Baccalauréat International (IB)
+        show: true
+        startDate: 2020-01-01
+        endDate: 2023-12-31
+        highlights:
+          - Suivi du programme du diplôme IB avec Mathématiques, Physique et Chimie de niveau supérieur.
+          - Rédaction d'un mémoire (Extended Essay) sur des simulations du problème de la brachistochrone en physique.
+
+  - organization: Scouts Canada
+    show: false
+    url: ""
+    location: ""
+    positions:
+      - position: Porte-parole jeunesse national
+        show: true
+        startDate: 2017-01-01
+        endDate: 2022-12-31
+        highlights:
+          - Animation d'événements.
+          - Rédaction d'articles.
+          - Gestion des médias sociaux.
+          - Interaction avec les médias.
+      - position: Membre du comité, programme des Objectifs de développement durable
+        show: false
+        startDate: 2019-01-01
+        endDate: 2020-12-31
+        highlights:
+          - Aide à la création de programmes d'éducation et de sensibilisation aux Objectifs de développement durable.
+
+awards:
+  - title: "Hector J. MacLeod Award"
+    issuer: IEEE Vancouver Section
+    date: 2024-04-15
+    highlights:
+      - "Décerné aux étudiants ayant démontré des efforts pionniers dans leur domaine d'étude et une excellence scolaire élevée."
+    value: 2000
+    visible: true
+
+  - title: "Erich Vogt First Year Summer Research Experience (FYSRE) Award"
+    issuer: UBC Department of Physics and Astronomy
+    date: 2024-05-01
+    highlights:
+      - "Décerné à des étudiants prometteurs en physique pour un stage de recherche de 4 mois."
+    value: null
+    visible: true
+
+  - title: "Alberta Centennial Award and Alberta Premier's Citizenship Award"
+    issuer: Government of Alberta
+    date: 2023-05-01
+    highlights:
+      - "Décerné pour un service communautaire exceptionnel."
+    value: 2000
+    visible: true
+
+  - title: "Calgary Flames Foundation Community Involvement Scholarship"
+    issuer: Education Matters
+    date: 2023-08-01
+    highlights:
+      - "Décerné pour l'engagement communautaire."
+    value: 2005
+    visible: true
+
+  - title: "Julia Turnbull Leadership Award for exceptional community service"
+    issuer: The Calgary Foundation
+    date: 2023-07-01
+    highlights:
+      - "Décerné pour un service communautaire exceptionnel."
+    value: 1000
+    visible: true
+
+  - title: "Ted Rogers Entrance Scholarship"
+    issuer: Rogers Communications
+    date: 2023-06-01
+    highlights:
+      - "Décerné pour la réussite scolaire."
+    value: 2000
+    visible: false
+
+  - title: "Tom Lawson Award for embodying the spirit of Canadian debate"
+    issuer: Canadian National Debate Society
+    date: 2023-01-01
+    highlights:
+      - "Attribué par vote des délégués étudiants au Séminaire national canadien de débat."
+    value: null
+    visible: false
+
+  - title: "10 Scouts Canada commendations"
+    issuer: Scouts Canada
+    date: 2022-05-01
+    highlights:
+      - "Décerné pour diverses réalisations."
+    value: null
+    visible: false
 
 skills:
   - title: "Apprentissage Automatique"
@@ -80,8 +215,11 @@ skills:
     description: "C, C++, Python, Java, MATLAB, Bash, Git"
     visible: true
   - title: "Physique des Particules"
-    description: "Root, calcul sur grille du CERN, Athena"
+    description: "ROOT, calcul sur grille du CERN, Athena"
     visible: true
+  - title: "Calcul Quantique"
+    description: "Utilisation de Qiskit pour simuler des algorithmes quantiques."
+    visible: false
 
 publications:
   - name: "Développement de Techniques d'Apprentissage Automatique pour le Flux de Particules dans l'Expérience ATLAS"
@@ -89,7 +227,83 @@ publications:
     releaseDate: "2024-06-01"
     url: "https://himmens.com/publications/casst2024"
     highlights:
-      - "Classé 2e sur 44 présentations"
+      - "Classé 2e sur 44 présentations."
+    visible: true
+    
+  - name: "JetPointNet : une approche d'apprentissage automatique pour l'attribution cellule-piste dans l'expérience ATLAS"
+    publisher: "Conférence canadienne de physique de premier cycle"
+    releaseDate: "2024-10-01"
+    url: "https://himmens.com/publications/cupc2024"
+    visible: true
+    
+  - name: "Flux de particules 3D dans le calorimètre d'ATLAS : comment entraîner votre modèle"
+    publisher: "Semaine scientifique de TRIUMF"
+    releaseDate: "2024-05-01"
+    url: "https://himmens.com/publications/triumf2024"
+    visible: true
+    
+  - name: "ALEASAT — présentation à la semaine de formation \"Fly Your Satellite!\" de l'ESA"
+    publisher: "ESEC-GALAXIA de l'Agence spatiale européenne (Transinne, Belgique)"
+    releaseDate: "2024-03-01"
+    url: "https://himmens.com/publications/esa2024"
+    visible: true
+
+advocacy:
+
+  - organization: "Section étudiante UBC IEEE Aerospace Electrical Systems"
+    position: "Président"
+    startDate: "2025-08-25"
+    endDate: "present"
+    location: "Vancouver"
+    highlights:
+      - "Rôle de *responsable du programme technique* pour le Student Aerospace Summit, septembre 2025."
+      - "Organisation d'événements pour rassembler les étudiants intéressés par l'aérospatiale à l'UBC."
+    visible: true
+
+  - organization: "Institut Arthur B. McDonald de physique des astroparticules"
+    position: "Membre du comité consultatif du personnel hautement qualifié (PHQ)"
+    startDate: "2024-01-01"
+    endDate: "present"
+    location: "Canada (à distance)"
+    highlights:
+      - "Collaboration avec des membres à travers le Canada pour élaborer des listes d'opportunités pour les étudiants et jeunes diplômés."
+      - "Partage des opportunités de l'Institut McDonald avec les PHQ admissibles en C.-B. et en Alberta."
+    visible: true
+    
+  - organization: "Child Rights Connect"
+    position: "Membre de l'équipe consultative"
+    startDate: "2021-01-01"
+    endDate: "2023-12-31"
+    location: "Genève, Suisse (à distance)"
+    highlights:
+      - "Conseils aux délégations de l'ONU sur des stratégies de communication pour des objectifs de haut niveau en matière de droits."
+      - "Présentations auprès de gouvernements et consultations sur des initiatives internationales soutenant la Convention relative aux droits de l'enfant."
+    visible: true
+    
+  - organization: "Organisation des États américains"
+    position: "Correspondant"
+    startDate: "2019-01-01"
+    endDate: "2020-12-31"
+    location: "Washington, DC (à distance)"
+    highlights:
+      - "Création et édition de contenus sur les droits humains et les droits de l'enfant dans les Amériques."
+      - "Participation au 3e Forum panaméricain des enfants et des jeunes à Carthagène, Colombie, avec le gouvernement du Canada."
+    visible: false
+
+experiences:
+  - name: "École quantique pour jeunes étudiants"
+    organization: "Université de Waterloo et Institut d'informatique quantique"
+    description: "Participant à un programme intensif d'informatique quantique"
+    visible: true
+    
+  - name: "Introduction à l'informatique quantique"
+    organization: "IBM"
+    description: "Participant à un cours de 8 mois utilisant l'infrastructure quantique d'IBM"
+    visible: true
+    
+  - name: "Certification en calcul scientifique avec Python"
+    organization: "freeCodeCamp"
+    description: "300 heures de formation"
     visible: true
 
 ui:
