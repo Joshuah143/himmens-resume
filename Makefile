@@ -1,4 +1,4 @@
-.PHONY: all build test clean en fr business academic release dev dev-academic-en dev-academic-fr dev-business-en dev-business-fr ci-test
+.PHONY: all build test clean en fr business academic release dev dev-academic-en dev-academic-fr dev-business-en dev-business-fr ci-test publish lint
 
 all: build
 
@@ -22,7 +22,10 @@ test: build
 test-offline: build
 	CI=true uv run python -m pytest -v tests/
 
-clean:
+lint:
+	uv tool run ruff check .
+
+clean: lint
 	rm -f output/*.pdf
 	rm -f temp_*.typ
 
@@ -53,3 +56,6 @@ ci-test:
 
 release: clean all test
 	@echo "Release build completed and tested successfully!"
+
+publish:
+	uv run python publish.py

@@ -8,9 +8,6 @@ import os
 import subprocess
 import sys
 import argparse
-import datetime
-import tempfile
-from pathlib import Path
 
 
 def generate_temp_typst_file(resume_type, language, project_root):
@@ -89,7 +86,7 @@ def build_resume(resume_type, output_file, language="en", keep_temp=False):
         if not keep_temp:
             try:
                 os.remove(temp_file)
-            except:
+            except FileNotFoundError:
                 pass
 
 

@@ -103,6 +103,9 @@ make test
 # Run tests in offline mode (skips actual URL validation)
 make test-offline
 
+# Check code style with Ruff
+make lint
+
 # Clean generated files
 make clean
 
@@ -112,6 +115,36 @@ make release
 # Simulate CI pipeline
 make ci-test
 ```
+
+#### Publishing PDFs
+
+```bash
+# Build, run offline link checks, and push PDFs to the published branch
+make publish
+
+# The same flow with custom options
+uv run python publish.py --skip-tests --branch published --remote origin
+```
+
+The helper script (`publish.py`) creates a temporary git worktree, copies every
+PDF from `output/`, and commits the artifacts to the `published` branch (or any
+branch you supply via `--branch`). By default it:
+
+- Rebuilds the PDFs locally with Typst
+- Runs the pytest link checks against the live network
+- Pushes the resulting commit to `origin/published`
+
+Optional flags:
+
+- `--skip-build` – reuse the PDFs already in `output/`
+- `--skip-tests` – skip running the link checker before publishing
+- `--offline-tests` – run link checks in offline mode (skips network calls)
+
+Paths on `published` continue to work with the README links, so no additional
+GitHub automation is required.
+
+Note: `make clean` runs the Ruff lint check first, so fix any lint issues (or
+run `make lint` directly) before cleaning completes.
 
 ### Content Structure
 
@@ -134,34 +167,13 @@ Edit the template files in the `resume_templates/` directory:
 - `academic.typ` for academic resumes
 - `business.typ` for business resumes
 
-### Continuous Integration
+### Continuous Integration (optional)
 
-The project uses GitHub Actions for CI/CD with the following features:
-
-#### PDF Generation
-
-When changes are pushed to the repository:
-
-1. The CI pipeline automatically builds all resume formats
-2. Tests are run to validate all links and content
-3. PDFs are stored in three ways:
-   - As GitHub Actions artifacts (available for 90 days)
-   - In a separate "published" branch for direct GitHub access
-   - As GitHub Releases (when merged to main branch)
-
-#### Build Provenance and Security
-
-For PDFs generated from the main branch, our CI pipeline uses GitHub's [Build Provenance](https://docs.github.com/en/actions/security-guides/using-build-attestations-with-github-actions) attestation to create cryptographically verifiable signatures. This ensures:
-
-- PDFs are built from the exact source code in the repository
-- The build process is traceable and tamper-evident
-- Chain of custody for the PDFs is maintained
-
-To verify attestations of downloaded PDFs, use:
-
-```bash
-gh attestation verify <pdf-file> --repo joshuah143/himmens-resume
-```
+The GitHub Actions workflow in `.github/workflows/build-resumes.yml` remains
+available if you still want automated builds, provenance attestations, or
+release artifacts. With the new `publish.py` helper you can also skip CI
+entirely and publish from your workstation. Disable or remove the workflow when
+it is no longer needed.
 
 #### Repository Organization
 
