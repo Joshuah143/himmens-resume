@@ -42,7 +42,7 @@ This repository uses a content-template separation approach with:
   - `academic.typ` - Academic resume template
   - `business.typ` - Business resume template
   - `utils.typ` - Utility functions for formatting
-- `build.py` - Python script to build all resume formats
+- `resume_cli/` - Typer-based CLI package that builds, validates, and publishes resumes
 - `tests/` - Tests for validating resumes
 - `output/` - Generated PDF resume files
 
@@ -50,29 +50,28 @@ This repository uses a content-template separation approach with:
 
 #### Building Resumes
 
-To build all resume formats in all languages:
+Make sure the CLI is on your `PATH` first. Easiest options:
+- prefix commands with `uv run resume …` (no shell changes)
+- activate the virtualenv: `source .venv/bin/activate`
+- add `.venv/bin` to your shell init if you want `resume` always available
+
+To build all resume formats in all languages once the command resolves:
 
 ```bash
-make build
-# or
-uv run build.py
+uv run resume build
 ```
 
 To build specific types or languages:
 
 ```bash
 # Build only academic resumes (both languages)
-make academic
-# or
-uv run build.py --types academic
+uv run resume build --type academic
 
 # Build only French resumes (both types)
-make fr
-# or
-uv run build.py --languages fr
+uv run resume build --language fr
 
 # Build only English business resumes
-uv run build.py --types business --languages en
+uv run resume build --type business --language en
 ```
 
 #### Development Mode
@@ -81,15 +80,15 @@ When working directly with Typst files, you can use dev mode to keep the tempora
 
 ```bash
 # Generate all formats and keep temp files
-make dev
+uv run resume build --keep-temp
 
 # Generate only academic English resume and keep temp file
-make dev-academic-en
+uv run resume build --type academic --language en --keep-temp
 
 # Other specific dev targets
-make dev-academic-fr
-make dev-business-en
-make dev-business-fr
+uv run resume build --type academic --language fr --keep-temp
+uv run resume build --type business --language en --keep-temp
+uv run resume build --type business --language fr --keep-temp
 ```
 
 The temporary files are created in the project root with names like `temp_academic_en.typ`. You can edit these files directly for quick development and testing.
@@ -97,41 +96,41 @@ The temporary files are created in the project root with names like `temp_academ
 #### Testing and Cleaning
 
 ```bash
-# Run tests (will check links)
-make test
+# Run link validation (performs HTTP checks)
+uv run resume check-links
 
-# Run tests in offline mode (skips actual URL validation)
-make test-offline
+# Run link validation in offline mode (skips network calls)
+uv run resume check-links --offline
 
 # Check code style with Ruff
-make lint
+uv run resume lint
 
 # Clean generated files
-make clean
+uv run resume clean
 
 # Full release process (clean, build, test)
-make release
+uv run resume release
 
 # Simulate CI pipeline
-make ci-test
+uv run resume release --offline
 ```
 
 #### Publishing PDFs
 
 ```bash
-# Build, run offline link checks, and push PDFs to the published branch
-make publish
+# Build, validate, and push PDFs to the published branch
+uv run resume publish
 
-# The same flow with custom options
-uv run python publish.py --skip-tests --branch published --remote origin
+# Publish with custom options (JSON config optional)
+uv run resume publish --config publish.config.json
 ```
 
-The helper script (`publish.py`) creates a temporary git worktree, copies every
-PDF from `output/`, and commits the artifacts to the `published` branch (or any
-branch you supply via `--branch`). By default it:
+The `publish` command reuses the CLI logic to create a temporary git worktree,
+copy PDFs from `output/`, and commit artifacts to each configured target. By
+default it:
 
 - Rebuilds the PDFs locally with Typst
-- Runs the pytest link checks against the live network
+- Runs the built-in link validation against the live network
 - Pushes the resulting commit to `origin/published`
 
 Optional flags:
@@ -139,12 +138,13 @@ Optional flags:
 - `--skip-build` – reuse the PDFs already in `output/`
 - `--skip-tests` – skip running the link checker before publishing
 - `--offline-tests` – run link checks in offline mode (skips network calls)
+- `--target origin:main` – publish to additional remote/branch pairs
+- `--config publish.config.json` – load publish settings (targets, skip flags, custom message template)
 
 Paths on `published` continue to work with the README links, so no additional
 GitHub automation is required.
 
-Note: `make clean` runs the Ruff lint check first, so fix any lint issues (or
-run `make lint` directly) before cleaning completes.
+Note: the consolidated CLI now owns linting, cleaning, release, and publish workflows.
 
 ### Content Structure
 
@@ -171,8 +171,8 @@ Edit the template files in the `resume_templates/` directory:
 
 The GitHub Actions workflow in `.github/workflows/build-resumes.yml` remains
 available if you still want automated builds, provenance attestations, or
-release artifacts. With the new `publish.py` helper you can also skip CI
-entirely and publish from your workstation. Disable or remove the workflow when
+release artifacts. With the consolidated `resume publish` command you can
+also skip CI entirely and publish from your workstation. Disable or remove the workflow when
 it is no longer needed.
 
 #### Repository Organization

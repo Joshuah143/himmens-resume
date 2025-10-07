@@ -1,6 +1,7 @@
 [project]
 name = "himmens-resume"
 version = "1.0.0"
+classifiers = ["Private :: Do Not Upload"]
 description = "Resume generator for multiple formats and languages"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -10,19 +11,19 @@ authors = [
 dependencies = [
     "pymupdf",
     "requests",
-    "pytest",
+    "typer",
 ]
 
 [project.scripts]
-build-resume = "build:main"
+resume = "resume_cli:app"
+build-resume = "resume_cli:app"
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-filterwarnings = [
-    "ignore::DeprecationWarning:.*importlib.*:488",
-    "ignore::DeprecationWarning:sys:0"
-]
-markers = [
-    "offline: marks tests to run in offline mode (no network connections)"
-]
-addopts = "--strict-markers"
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+package = true
+
+[tool.setuptools.packages.find]
+include = ["resume_cli"]
