@@ -6,8 +6,8 @@ A system that generates multiple resume formats in different languages from stru
 
 ### Available Resume Formats
 
-- **Academic Resume**: [English](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_academic_resume.pdf) | [French](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_academic_resume_fr.pdf)
-- **Business Resume**: [English](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_business_resume.pdf) | [French](https://github.com/Joshuah143/himmens-resume/raw/published/output/himmens_joshua_business_resume_fr.pdf)
+- **Academic Resume**: [English](https://github.com/Joshuah143/himmens-resume/blob/published/output/himmens_joshua_academic_resume.pdf) | [French](https://github.com/Joshuah143/himmens-resume/blob/published/output/himmens_joshua_academic_resume_fr.pdf)
+- **Business Resume**: [English](https://github.com/Joshuah143/himmens-resume/blob/published/output/himmens_joshua_business_resume.pdf) | [French](https://github.com/Joshuah143/himmens-resume/blob/published/output/himmens_joshua_business_resume_fr.pdf)
 
 ### Content Structure
 

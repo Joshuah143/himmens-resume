@@ -37,9 +37,11 @@ work:
         show: true
         startDate: 2025-01-01
         endDate: 2025-04-01
-        highlights: 
+        highlights:
           - "Developed machine learning models using scikit-learn to save the Government of Alberta *>\\$4 million* annually."
           - "Developed novel evaluation metrics to minimize regional bias and maximize transferability of models."
+          - "Built Azure ML pipelines for automated model training and deployment, serving predictions via REST APIs integrated with SQL databases and Blob Storage."
+          - "Implemented Uber's H3 hexagonal spatial indexing to balance geographic accuracy with user privacy in an infrastructure planning tool."
 
   - organization: TRIUMF
     show: true

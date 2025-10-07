@@ -57,5 +57,5 @@ ci-test:
 release: clean all test
 	@echo "Release build completed and tested successfully!"
 
-publish:
+publish: release
 	uv run python publish.py
