@@ -13,11 +13,13 @@ from .common import (
     TEMP_PATTERN,
     ResumeLanguage,
     ResumeType,
+    complete_resume_languages,
+    complete_resume_types,
     ensure_tool,
+    output_filename,
     resolve_languages,
     resolve_types,
     run_command,
-    output_filename,
 )
 
 
@@ -98,12 +100,14 @@ def register(app: typer.Typer) -> None:
             "--type",
             "-t",
             help="Resume types to build (repeat flag for multiples). Defaults to all.",
+            shell_complete=complete_resume_types,
         ),
         languages: Optional[List[ResumeLanguage]] = typer.Option(
             None,
             "--language",
             "-l",
             help="Languages to build (repeat flag for multiples). Defaults to all.",
+            shell_complete=complete_resume_languages,
         ),
         keep_temp: bool = typer.Option(
             False,
@@ -123,4 +127,3 @@ def register(app: typer.Typer) -> None:
         except CLIError as exc:
             typer.secho(str(exc), fg=typer.colors.RED)
             raise typer.Exit(1)
-

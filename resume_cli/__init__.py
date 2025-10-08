@@ -7,6 +7,7 @@ from . import build, maintenance, publish, validate
 app = typer.Typer(
     add_completion=False,
     help="Build, validate, and publish resumes from the structured content in this repository.",
+    context_settings={"help_option_names": ["-h", "--help"]},
 )
 
 build.register(app)

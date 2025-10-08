@@ -20,8 +20,7 @@ The resume content is stored in YAML files:
 This repository uses a content-template separation approach with:
 - YAML files storing structured content and UI text
 - [Typst](https://typst.app/) templates for academic and business formats
-- GitHub Actions for automated generation and publishing
-- Security through verifiable build provenance
+- A custom `typer` based python application to make the workflow seamless
 
 ### Attribution
 
@@ -58,20 +57,24 @@ Make sure the CLI is on your `PATH` first. Easiest options:
 To build all resume formats in all languages once the command resolves:
 
 ```bash
-uv run resume build
+resume build
 ```
 
 To build specific types or languages:
 
 ```bash
+# Setup the environment
+uv sync
+make activate 
+
 # Build only academic resumes (both languages)
-uv run resume build --type academic
+resume build --type academic
 
 # Build only French resumes (both types)
-uv run resume build --language fr
+resume build --language fr
 
 # Build only English business resumes
-uv run resume build --type business --language en
+resume build --type business --language en
 ```
 
 #### Development Mode
@@ -167,19 +170,8 @@ Edit the template files in the `resume_templates/` directory:
 - `academic.typ` for academic resumes
 - `business.typ` for business resumes
 
-### Continuous Integration (optional)
-
-The GitHub Actions workflow in `.github/workflows/build-resumes.yml` remains
-available if you still want automated builds, provenance attestations, or
-release artifacts. With the consolidated `resume publish` command you can
-also skip CI entirely and publish from your workstation. Disable or remove the workflow when
-it is no longer needed.
-
 #### Repository Organization
 
 The repository uses a branch structure where:
-- `develop`: Active development work
 - `main`: Production-ready code
 - `published`: Contains the built PDF artifacts
-
-When making changes, work on the `develop` branch and merge to `main` when ready to publish.

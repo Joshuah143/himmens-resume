@@ -9,6 +9,7 @@
 - Use `--type` / `--language` flags (repeatable) to scope builds. Example: `uv run resume build --type business --language fr`.
 - Pass `--keep-temp` to preserve `temp_<type>_<lang>.typ` files for iterative Typst edits.
 - Ensure Typst CLI and `uv` are on PATH before running builds.
+- `resume -h` mirrors `resume --help` for quick reminders.
 
 ## Coding Style & Naming Conventions
 - Python code follows Ruff defaults: 4-space indentation, double-quoted docstrings, f-strings, and type hints where practical. Run `uv run resume lint` before committing.

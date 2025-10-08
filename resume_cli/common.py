@@ -87,7 +87,7 @@ def resolve_types(types: Optional[Iterable[ResumeType]]) -> List[ResumeType]:
 
 
 def resolve_languages(languages: Optional[Iterable[ResumeLanguage]]) -> List[ResumeLanguage]:
-    return list(languages) if languages else [ResumeLanguage(l) for l in DEFAULT_LANGUAGES]
+    return list(languages) if languages else [ResumeLanguage(lang) for lang in DEFAULT_LANGUAGES]
 
 
 def output_filename(resume_type: ResumeType, language: ResumeLanguage) -> str:
@@ -105,3 +105,37 @@ def collect_pdfs(paths: Optional[List[Path]]) -> List[Path]:
 
 def apply_message(template: str, **values: str) -> str:
     return Template(template).safe_substitute(**values)
+
+
+def complete_resume_types(
+    ctx: typer.Context,
+    param: typer.CallbackParam,
+    incomplete: str,
+) -> List[typer.CompletionItem]:
+    prefix = incomplete.lower()
+    items: List[typer.CompletionItem] = []
+    for resume_type in ResumeType:
+        value = resume_type.value
+        if value.startswith(prefix):
+            items.append(
+                typer.CompletionItem(
+                    value,
+                    help=f"Build the {value} resume template",
+                )
+            )
+    return items
+
+
+def complete_resume_languages(
+    ctx: typer.Context,
+    param: typer.CallbackParam,
+    incomplete: str,
+) -> List[typer.CompletionItem]:
+    prefix = incomplete.lower()
+    items: List[typer.CompletionItem] = []
+    for language in ResumeLanguage:
+        value = language.value
+        if value.startswith(prefix):
+            description = "English" if value == "en" else "French"
+            items.append(typer.CompletionItem(value, help=description))
+    return items
