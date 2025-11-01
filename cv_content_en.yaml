@@ -25,7 +25,7 @@ education:
     - "Dean's Honor List (all years)"
   highlights:
     - "Working knowledge of English and French."
-    - "Specialized in entrepreneurship, machine learning, and embedded systems."
+    - "Specialized in entrepreneurship, machine learning, quantum computing, and embedded systems."
 
 work:
   - organization: AltaML
@@ -210,17 +210,23 @@ skills:
     description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX"
     visible: true
   - title: "Embedded Programming"
-    description: "Experienced with FreeRTOS on TMS570, RP2040, and STM32"
+    description: "Experienced with FreeRTOS on TMS570, RP2040, and STM32, KiCAD"
     visible: true
   - title: "Software Development"
-    description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git, Bash"
+    description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git"
     visible: true
   - title: "Quantum Computing"
-    description: "Used Qiskit to simulate quantum algorithms."
-    visible: false
+    description: "Qiskit, QASM, Pasqal, QCNNs, VQCs"
+    visible: true
   - title: "Particle Physics"
     description: "ROOT, CERN grid computing, Athena"
     visible: true
+  - title: "Cloud Computing"
+    description: "Azure ML, Azure DevOps, REST APIs, SQL, Blob Storage"
+    visible: false
+  - title: "Design"
+    description: "Fusion, OnShape, KiCAD"
+    visible: false
 
 publications:
   - name: "Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment"
@@ -250,7 +256,6 @@ publications:
     visible: true
 
 advocacy:
-
   - organization: "UBC IEEE Aerospace Electrical Systems Student Branch Chapter"
     position: "Chair"
     startDate: "2025-08-25"
@@ -264,7 +269,7 @@ advocacy:
   - organization: "Arthur B McDonald Astroparticle Physics Institute"
     position: "Highly Qualified Personnel (HQP) Advisory Committee Member"
     startDate: "2024-01-01"
-    endDate: "present"
+    endDate: "2024-09-01"
     location: "Canada (remote)"
     highlights:
       - "Worked with members across Canada to develop opportunity lists for students and recent graduates."
