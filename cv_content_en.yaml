@@ -312,6 +312,11 @@ experiences:
     description: "300 hours of training"
     visible: true
 
+  - name: "GENQ Global Hackathon (Geneva, 2025 and Calgary, 2024)"
+    organization: "Quantum AI Ventures"
+    description: "Build QCNNs and QUBO solvers for quantum machine learning tasks"
+    visible: true
+
 ui:
   sections:
     education: "Education"
