@@ -25,7 +25,7 @@ education:
     - "Liste d'honneur du doyen (toutes les années)"
   highlights:
     - "Connaissance pratique de l'anglais et du français."
-    - "Spécialisation en entrepreneuriat, apprentissage automatique et systèmes embarqués."
+    - "Spécialisation en entrepreneuriat, apprentissage automatique, calcul quantique et systèmes embarqués."
 
 work:
   - organization: AltaML
@@ -40,6 +40,8 @@ work:
         highlights:
           - "Développé des modèles d'apprentissage automatique avec scikit-learn permettant d'économiser au gouvernement de l'Alberta *>\\$4 million* par an."
           - "Conçu de nouvelles métriques d'évaluation pour minimiser les biais régionaux et maximiser la transférabilité des modèles."
+          - "Mis en place des pipelines Azure ML pour automatiser l'entraînement et le déploiement des modèles, diffusant des prédictions via des API REST intégrées à des bases de données SQL et à Blob Storage."
+          - "Implémenté l'indexation spatiale hexagonale H3 d'Uber afin d'équilibrer la précision géographique et la confidentialité des utilisateurs dans un outil de planification d'infrastructure."
 
   - organization: TRIUMF
     show: true
@@ -78,7 +80,7 @@ work:
         highlights:
           - Programmation de pilotes de périphériques et d'équipements de soutien au sol électriques (EGSE).
           - Développement du banc d'essai avionique ALEASAT (FlatSat).
-          - Travail sur l'ordinateur de bord ALEASAT en vue d'un lancement au 1er trimestre 2026.
+          - Travail sur le système informatique embarqué ALEASAT avec FreeRTOS sur un microcontrôleur TMS570.
 
   - organization: NumPy
     show: false
@@ -209,16 +211,22 @@ skills:
     description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX"
     visible: true
   - title: "Programmation Embarquée"
-    description: "Expérience avec FreeRTOS sur TMS570, RP2040 et STM32"
+    description: "Expérience avec FreeRTOS sur TMS570, RP2040, STM32 et KiCAD"
     visible: true
   - title: "Développement Logiciel"
-    description: "C, C++, Python, Java, MATLAB, Bash, Git"
+    description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git"
+    visible: true
+  - title: "Calcul Quantique"
+    description: "Qiskit, QASM, Pasqal, QCNNs, VQCs"
     visible: true
   - title: "Physique des Particules"
     description: "ROOT, calcul sur grille du CERN, Athena"
     visible: true
-  - title: "Calcul Quantique"
-    description: "Utilisation de Qiskit pour simuler des algorithmes quantiques."
+  - title: "Informatique en Nuage"
+    description: "Azure ML, Azure DevOps, API REST, SQL, Blob Storage"
+    visible: false
+  - title: "Conception"
+    description: "Fusion, OnShape, KiCAD"
     visible: false
 
 publications:
@@ -263,7 +271,7 @@ advocacy:
   - organization: "Institut Arthur B. McDonald de physique des astroparticules"
     position: "Membre du comité consultatif du personnel hautement qualifié (PHQ)"
     startDate: "2024-01-01"
-    endDate: "present"
+    endDate: "2024-09-01"
     location: "Canada (à distance)"
     highlights:
       - "Collaboration avec des membres à travers le Canada pour élaborer des listes d'opportunités pour les étudiants et jeunes diplômés."
@@ -304,6 +312,11 @@ experiences:
   - name: "Certification en calcul scientifique avec Python"
     organization: "freeCodeCamp"
     description: "300 heures de formation"
+    visible: true
+
+  - name: "GENQ Global Hackathon (Genève, 2025 et Calgary, 2024)"
+    organization: "Quantum AI Ventures"
+    description: "Création de QCNN et de solveurs QUBO pour des tâches d'apprentissage automatique quantique"
     visible: true
 
 ui:
