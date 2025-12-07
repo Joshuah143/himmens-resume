@@ -1,29 +1,16 @@
+# This file is kept for historical reference.
+# The CLI has been rewritten in Rust. See resume_cli_rs/ for the new implementation.
+# Build the Rust CLI with: cd resume_cli_rs && cargo build --release
+
 [project]
 name = "himmens-resume"
-version = "1.0.0"
+version = "2.0.0"
 classifiers = ["Private :: Do Not Upload"]
-description = "Resume generator for multiple formats and languages"
+description = "Resume generator for multiple formats and languages (Rust CLI)"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
     {name = "Joshua Himmens", email = "joshua@himmens.com"},
 ]
-dependencies = [
-    "pymupdf",
-    "requests",
-    "typer",
-]
-
-[project.scripts]
-resume = "resume_cli:app"
-build-resume = "resume_cli:app"
-
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.uv]
-package = true
-
-[tool.setuptools.packages.find]
-include = ["resume_cli"]
+# No Python dependencies - CLI is now Rust-based
+dependencies = []
