@@ -13,9 +13,6 @@ from .common import (
     TEMP_PATTERN,
     ResumeLanguage,
     ResumeType,
-    complete_resume_languages,
-    complete_resume_types,
-    ensure_tool,
     output_filename,
     resolve_languages,
     resolve_types,
@@ -36,14 +33,14 @@ def generate_temp_typst_file(resume_type: ResumeType, language: ResumeLanguage) 
     if not content_path.exists():
         raise CLIError(f"Missing content file: {content_path}")
 
-    temp_content = (
-        f"#import \"resume_templates/{template_name}\": {resume_type.value}_template\n\n"
-        f"// Load content file\n"
-        f"#let content_file = (content_file: \"{content_name}\").content_file\n"
-        f"#let content = yaml(content_file)\n\n"
-        f"// Generate resume\n"
-        f"#{resume_type.value}_template(content)\n"
-    )
+    temp_content = f"""
+#import \"resume_templates/{template_name}\": {resume_type.value}_template
+// load content file
+#let content_file = (content_file: \"{content_name}\").content_file
+#let content = yaml(content_file)
+// generate resume
+#{resume_type.value}_template(content)
+    """
     temp_path.write_text(temp_content, encoding="utf-8")
     return temp_path
 
@@ -54,11 +51,11 @@ def build_single(
     *,
     keep_temp: bool,
     output_dir: Path,
+    goc: bool = False,
 ) -> None:
-    ensure_tool("typst")
     temp_file = generate_temp_typst_file(resume_type, language)
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_file = output_dir / output_filename(resume_type, language)
+    output_file = output_dir / output_filename(resume_type, language, goc=goc)
 
     typer.echo(f"Building {output_file.relative_to(PROJECT_ROOT)}")
     cmd = [
@@ -66,6 +63,8 @@ def build_single(
         "compile",
         "--input",
         f"content_file={CONTENT_PATTERN.format(language=language.value)}",
+        "--input",
+        f"goc={'true' if goc else 'false'}",
         str(temp_file),
         str(output_file),
     ]
@@ -83,13 +82,20 @@ def build_resumes(
     languages: Optional[Iterable[ResumeLanguage]] = None,
     keep_temp: bool = False,
     output_dir: Path = OUTPUT_DIR,
+    goc: bool = False,
 ) -> None:
     resolved_types = resolve_types(types)
     resolved_languages = resolve_languages(languages)
 
     for resume_type in resolved_types:
         for language in resolved_languages:
-            build_single(resume_type, language, keep_temp=keep_temp, output_dir=output_dir)
+            build_single(
+                resume_type,
+                language,
+                keep_temp=keep_temp,
+                output_dir=output_dir,
+                goc=goc,
+            )
 
 
 def register(app: typer.Typer) -> None:
@@ -100,14 +106,12 @@ def register(app: typer.Typer) -> None:
             "--type",
             "-t",
             help="Resume types to build (repeat flag for multiples). Defaults to all.",
-            shell_complete=complete_resume_types,
         ),
         languages: Optional[List[ResumeLanguage]] = typer.Option(
             None,
             "--language",
             "-l",
             help="Languages to build (repeat flag for multiples). Defaults to all.",
-            shell_complete=complete_resume_languages,
         ),
         keep_temp: bool = typer.Option(
             False,
@@ -120,10 +124,24 @@ def register(app: typer.Typer) -> None:
             "-o",
             help="Directory for generated PDFs.",
         ),
+        goc: bool = typer.Option(
+            False,
+            "--goc",
+            help=(
+                "Render the Government of Canada variant: include home address, PRI, "
+                "month/year dates, and full-time/part-time status with hours per week."
+            ),
+        ),
     ) -> None:
         """Compile resume PDFs for the requested type/language combinations."""
         try:
-            build_resumes(types=types, languages=languages, keep_temp=keep_temp, output_dir=output)
+            build_resumes(
+                types=types,
+                languages=languages,
+                keep_temp=keep_temp,
+                output_dir=output,
+                goc=goc,
+            )
         except CLIError as exc:
             typer.secho(str(exc), fg=typer.colors.RED)
             raise typer.Exit(1)
