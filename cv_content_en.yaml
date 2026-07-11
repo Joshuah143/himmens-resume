@@ -3,6 +3,8 @@ personal:
   email: joshua@himmens.com
   phone: 587-434-0118
   url: https://himmens.com
+  address: "310-6015 Iona Dr, Vancouver, BC V6T 2J4, Canada"  # GoC-only: rendered only when --goc is passed to `resume build`
+  pri: null  # GoC-only: Personal Record Identifier, rendered only when --goc is passed to `resume build`
   titles:
     - Engineering Physics Student
   profiles:
@@ -24,17 +26,33 @@ education:
   honors:
     - "Dean's Honor List (all years)"
   highlights:
-    - "Working knowledge of English and French."
-    - "Specialized in entrepreneurship, machine learning, quantum computing, and embedded systems."
+    - "Capstone projects: Built an ML-controlled dual-arm napkin-folding robot and co-designed a 5x5 phased-array sonar with 24 receive channels and FPGA-based simultaneous beamforming."
+    - "Specialized in entrepreneurship, machine learning, quantum computing, robotics, and embedded systems."
 
 work:
+  - organization: Tesla
+    show: true
+    url: ""
+    location: "Palo Alto, CA, USA"
+    positions:
+      - position: Tactile Sensing Engineering Intern, Optimus
+        show: true
+        employment_type: full-time
+        startDate: 2025-05-01
+        endDate: 2025-12-01
+        highlights:
+          - "Designed tactile sensors using data-driven models to guide sensor architecture and manufacturing specifications."
+          - "Collaborated on neural and classical physics models for Optimus tactile sensors."
+          - "Characterized tactile sensors, defined test specification limits for incoming samples, and collaborated on test infrastructure design."
+
   - organization: AltaML
     show: true
     url: "https://himmens.com/altaml"
-    location: ""
+    location: "Calgary, AB, Canada"
     positions:
       - position: Associate Machine Learning Developer
         show: true
+        employment_type: full-time
         startDate: 2025-01-01
         endDate: 2025-04-01
         highlights:
@@ -46,12 +64,21 @@ work:
   - organization: TRIUMF
     show: true
     url: "https://himmens.com/triumf"
-    location: ""
+    location: "Vancouver, BC, Canada"
     positions:
       - position: ATLAS Deep Learning Research Student
         show: true
         startDate: 2024-05-01
         endDate: 2025-02-20
+        # GoC-only: per-term employment status, rendered only when --goc is passed
+        goc_terms:
+          - startDate: 2024-05-01
+            endDate: 2024-09-01
+            employment_type: full-time
+          - startDate: 2024-09-01
+            endDate: 2025-02-20
+            employment_type: part-time
+            hours_per_week: 10
         highlights:
           - Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with wandb, TensorFlow, Keras.
           - Used CERN's grid computing to parallelize compute across thousands of nodes.
@@ -61,10 +88,12 @@ work:
   - organization: UBC Orbit Satellite Design Team
     show: true
     url: "https://himmens.com/orbit"
-    location: ""
+    location: "Vancouver, BC, Canada"
     positions:
       - position: Command and Data Handling (CDH) Lead and Firmware Developer
         show: true
+        employment_type: part-time
+        hours_per_week: 10
         startDate: 2023-10-01
         endDate: "present"
         highlights:
@@ -74,6 +103,8 @@ work:
           - Programmed device drivers and electrical ground support equipment (EGSE).
       - position: Embedded Firmware Developer
         show: true
+        employment_type: part-time
+        hours_per_week: 10
         startDate: 2023-01-01
         endDate: "present"
         highlights:
@@ -141,6 +172,14 @@ work:
           - Assisted in creating programs for Sustainable Development Goals education and outreach.
 
 awards:
+  - title: "2026 Design & Innovation Day Faculty Award"
+    issuer: UBC Faculty of Applied Science
+    date: 2026-04-01
+    highlights:
+    - "Earned one of three Faculty Awards for Linique, a dual-arm napkin-folding robot powered by a four-camera learned controller and vision-language-action model; contributed improvements to the open-source LeRobot framework."
+    value: 100
+    visible: true
+
   - title: "Hector J. MacLeod Award"
     issuer: IEEE Vancouver Section
     date: 2024-04-15
@@ -207,10 +246,10 @@ awards:
 
 skills:
   - title: "Machine Learning"
-    description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX"
+    description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX, LeRobot, Runpod, Triton"
     visible: true
   - title: "Embedded Programming"
-    description: "Experienced with FreeRTOS on TMS570, RP2040, and STM32, KiCAD"
+    description: "Experienced with FreeRTOS on TMS570, RP2040, STM32, Xilinx and Altera FPGAs, KiCAD"
     visible: true
   - title: "Software Development"
     description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git"
@@ -229,6 +268,14 @@ skills:
     visible: false
 
 publications:
+  - name: "Machine Learning for Robotic Napkin Folding"
+    publisher: "2026 IEEE Vancouver Section AGM"
+    releaseDate: "2026-03-01"
+    url: ""
+    highlights:
+      - "Placed 3rd. Explored various policies on SO-101 arms."
+    visible: true
+
   - name: "Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment"
     publisher: "Canadian Astroparticle Physics Summer Student Talks Competition (CASST 2024)"
     releaseDate: "2024-06-01"
@@ -259,7 +306,7 @@ advocacy:
   - organization: "UBC IEEE Aerospace Electrical Systems Student Branch Chapter"
     position: "Chair"
     startDate: "2025-08-25"
-    endDate: "present"
+    endDate: "2026-05-01"
     location: "Vancouver"
     highlights:
       - "Served as *Technical Program Chair* for the Student Aerospace Summit, September 2025."
@@ -274,7 +321,7 @@ advocacy:
     highlights:
       - "Worked with members across Canada to develop opportunity lists for students and recent graduates."
       - "Shared McDonald Institute opportunities with eligible HQP in BC and Alberta."
-    visible: true
+    visible: false
     
   - organization: "Child Rights Connect"
     position: "Advisory Team Member"
@@ -297,6 +344,11 @@ advocacy:
     visible: false
 
 experiences:
+  - name: "FizzVolt, HUD RL for Hardware Hackathon"
+    organization: "HUD"
+    description: "Built a GRPO reinforcement-learning environment that trains Qwen3 models to generate KiCad circuit designs using deterministic electrical-rule, cost, size, and availability validators as the reward"
+    visible: true
+
   - name: "Quantum School for Young Students"
     organization: "University of Waterloo and Institute for Quantum Computing"
     description: "Participant in intensive quantum computing program"
@@ -305,12 +357,12 @@ experiences:
   - name: "Introduction to Quantum Computing"
     organization: "IBM"
     description: "Participant in 8-month course using IBM's quantum infrastructure"
-    visible: true
+    visible: false
     
   - name: "Scientific Computing with Python certification"
     organization: "freeCodeCamp"
     description: "300 hours of training"
-    visible: true
+    visible: false
 
   - name: "GENQ Global Hackathon (Geneva, 2025 and Calgary, 2024)"
     organization: "Quantum AI Ventures"

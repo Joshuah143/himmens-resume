@@ -11,7 +11,6 @@ from .common import (
     DEFAULT_LINK_DELAY,
     OUTPUT_DIR,
     PROJECT_ROOT,
-    ensure_tool,
     run_command,
 )
 from .validate import validate_links
@@ -36,7 +35,8 @@ def run_lint(*, use_uv: bool, fix: bool) -> None:
     if use_uv and shutil.which("uv"):
         run_command(["uv", "tool", "run", *command])
     else:
-        ensure_tool(command[0])
+        if not shutil.which(command[0]):
+            raise CLIError(f"Tool not found: {command[0]}")
         run_command(command)
 
 

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import shutil
 import subprocess
 from dataclasses import dataclass, field
 from enum import Enum
@@ -77,11 +76,6 @@ def run_command(
         ) from exc
 
 
-def ensure_tool(name: str) -> None:
-    if shutil.which(name) is None:
-        raise CLIError(f"Required tool '{name}' is not available on PATH.")
-
-
 def resolve_types(types: Optional[Iterable[ResumeType]]) -> List[ResumeType]:
     return list(types) if types else [ResumeType(t) for t in DEFAULT_TYPES]
 
@@ -90,9 +84,15 @@ def resolve_languages(languages: Optional[Iterable[ResumeLanguage]]) -> List[Res
     return list(languages) if languages else [ResumeLanguage(lang) for lang in DEFAULT_LANGUAGES]
 
 
-def output_filename(resume_type: ResumeType, language: ResumeLanguage) -> str:
-    suffix = "_fr" if language == ResumeLanguage.fr else ""
-    return f"himmens_joshua_{resume_type.value}_resume{suffix}.pdf"
+def output_filename(
+    resume_type: ResumeType,
+    language: ResumeLanguage,
+    *,
+    goc: bool = False,
+) -> str:
+    lang_suffix = "_fr" if language == ResumeLanguage.fr else ""
+    goc_suffix = "_goc" if goc else ""
+    return f"himmens_joshua_{resume_type.value}_resume{lang_suffix}{goc_suffix}.pdf"
 
 
 def collect_pdfs(paths: Optional[List[Path]]) -> List[Path]:
@@ -105,37 +105,3 @@ def collect_pdfs(paths: Optional[List[Path]]) -> List[Path]:
 
 def apply_message(template: str, **values: str) -> str:
     return Template(template).safe_substitute(**values)
-
-
-def complete_resume_types(
-    ctx: typer.Context,
-    param: typer.CallbackParam,
-    incomplete: str,
-) -> List[typer.CompletionItem]:
-    prefix = incomplete.lower()
-    items: List[typer.CompletionItem] = []
-    for resume_type in ResumeType:
-        value = resume_type.value
-        if value.startswith(prefix):
-            items.append(
-                typer.CompletionItem(
-                    value,
-                    help=f"Build the {value} resume template",
-                )
-            )
-    return items
-
-
-def complete_resume_languages(
-    ctx: typer.Context,
-    param: typer.CallbackParam,
-    incomplete: str,
-) -> List[typer.CompletionItem]:
-    prefix = incomplete.lower()
-    items: List[typer.CompletionItem] = []
-    for language in ResumeLanguage:
-        value = language.value
-        if value.startswith(prefix):
-            description = "English" if value == "en" else "French"
-            items.append(typer.CompletionItem(value, help=description))
-    return items

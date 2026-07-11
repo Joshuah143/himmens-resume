@@ -19,8 +19,6 @@ from .common import (
     PublishTarget,
     ResumeLanguage,
     ResumeType,
-    complete_resume_languages,
-    complete_resume_types,
     apply_message,
     collect_pdfs,
     run_command,
@@ -226,14 +224,12 @@ def register(app: typer.Typer) -> None:
             "--type",
             "-T",
             help="Limit build step to specific resume types when publishing.",
-            shell_complete=complete_resume_types,
         ),
         languages: Optional[List[ResumeLanguage]] = typer.Option(
             None,
             "--language",
             "-L",
             help="Limit build step to specific languages when publishing.",
-            shell_complete=complete_resume_languages,
         ),
     ) -> None:
         """Build (unless skipped), validate, and push PDFs to one or more publish targets."""
