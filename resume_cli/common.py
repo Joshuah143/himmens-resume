@@ -87,19 +87,20 @@ def resolve_languages(languages: Optional[Iterable[ResumeLanguage]]) -> List[Res
 def output_filename(
     resume_type: ResumeType,
     language: ResumeLanguage,
-    *,
-    goc: bool = False,
 ) -> str:
     lang_suffix = "_fr" if language == ResumeLanguage.fr else ""
-    goc_suffix = "_goc" if goc else ""
-    return f"himmens_joshua_{resume_type.value}_resume{lang_suffix}{goc_suffix}.pdf"
+    return f"himmens_joshua_{resume_type.value}_resume{lang_suffix}.pdf"
 
 
 def collect_pdfs(paths: Optional[List[Path]]) -> List[Path]:
     if paths:
         pdfs = [path.resolve() for path in paths]
     else:
-        pdfs = sorted(OUTPUT_DIR.glob("*.pdf"))
+        pdfs = sorted(
+            OUTPUT_DIR / output_filename(resume_type, language)
+            for resume_type in ResumeType
+            for language in ResumeLanguage
+        )
     return [pdf for pdf in pdfs if pdf.exists()]
 
 

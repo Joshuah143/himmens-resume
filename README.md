@@ -147,6 +147,10 @@ Optional flags:
 Paths on `published` continue to work with the README links, so no additional
 GitHub automation is required.
 
+Publishing selects only the four standard English/French academic/business PDF
+filenames. Other PDFs in `output/` are excluded. Keep private application details
+such as home addresses outside this repository.
+
 Note: the consolidated CLI now owns linting, cleaning, release, and publish workflows.
 
 ### Content Structure

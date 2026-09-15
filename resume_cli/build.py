@@ -51,11 +51,10 @@ def build_single(
     *,
     keep_temp: bool,
     output_dir: Path,
-    goc: bool = False,
 ) -> None:
     temp_file = generate_temp_typst_file(resume_type, language)
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_file = output_dir / output_filename(resume_type, language, goc=goc)
+    output_file = output_dir / output_filename(resume_type, language)
 
     typer.echo(f"Building {output_file.relative_to(PROJECT_ROOT)}")
     cmd = [
@@ -63,8 +62,6 @@ def build_single(
         "compile",
         "--input",
         f"content_file={CONTENT_PATTERN.format(language=language.value)}",
-        "--input",
-        f"goc={'true' if goc else 'false'}",
         str(temp_file),
         str(output_file),
     ]
@@ -82,7 +79,6 @@ def build_resumes(
     languages: Optional[Iterable[ResumeLanguage]] = None,
     keep_temp: bool = False,
     output_dir: Path = OUTPUT_DIR,
-    goc: bool = False,
 ) -> None:
     resolved_types = resolve_types(types)
     resolved_languages = resolve_languages(languages)
@@ -94,7 +90,6 @@ def build_resumes(
                 language,
                 keep_temp=keep_temp,
                 output_dir=output_dir,
-                goc=goc,
             )
 
 
@@ -124,14 +119,6 @@ def register(app: typer.Typer) -> None:
             "-o",
             help="Directory for generated PDFs.",
         ),
-        goc: bool = typer.Option(
-            False,
-            "--goc",
-            help=(
-                "Render the Government of Canada variant: include home address, PRI, "
-                "month/year dates, and full-time/part-time status with hours per week."
-            ),
-        ),
     ) -> None:
         """Compile resume PDFs for the requested type/language combinations."""
         try:
@@ -140,7 +127,6 @@ def register(app: typer.Typer) -> None:
                 languages=languages,
                 keep_temp=keep_temp,
                 output_dir=output,
-                goc=goc,
             )
         except CLIError as exc:
             typer.secho(str(exc), fg=typer.colors.RED)

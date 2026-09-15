@@ -3,7 +3,6 @@ personal:
   email: joshua@himmens.com
   phone: 587-434-0118
   url: https://himmens.com
-  pri: null  # GoC-only: Personal Record Identifier, rendered only when --goc is passed to `resume build`
   titles:
     - Engineering Physics Student
   profiles:
@@ -36,7 +35,6 @@ work:
     positions:
       - position: Tactile Sensing Design Intern, Optimus
         show: true
-        employment_type: full-time
         startDate: 2026-05-01
         endDate: 2026-12-01
         highlights:
@@ -51,7 +49,6 @@ work:
     positions:
       - position: Associate Machine Learning Developer
         show: true
-        employment_type: full-time
         startDate: 2025-01-01
         endDate: 2025-04-01
         highlights:
@@ -69,15 +66,6 @@ work:
         show: true
         startDate: 2024-05-01
         endDate: 2025-02-20
-        # GoC-only: per-term employment status, rendered only when --goc is passed
-        goc_terms:
-          - startDate: 2024-05-01
-            endDate: 2024-09-01
-            employment_type: full-time
-          - startDate: 2024-09-01
-            endDate: 2025-02-20
-            employment_type: part-time
-            hours_per_week: 10
         highlights:
           - Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with wandb, TensorFlow, Keras.
           - Used CERN's grid computing to parallelize compute across thousands of nodes.
@@ -91,8 +79,7 @@ work:
     positions:
       - position: Command and Data Handling (CDH) Lead and Firmware Developer
         show: true
-        employment_type: part-time
-        hours_per_week: 10
+
         startDate: 2023-10-01
         endDate: "present"
         highlights:
@@ -102,8 +89,7 @@ work:
           - Programmed device drivers and electrical ground support equipment (EGSE).
       - position: Embedded Firmware Developer
         show: true
-        employment_type: part-time
-        hours_per_week: 10
+
         startDate: 2023-01-01
         endDate: "present"
         highlights:

@@ -2,26 +2,6 @@
 
 // Business resume template (language-agnostic)
 #let business_template(content) = {
-  let goc_mode = sys.inputs.at("goc", default: "false") == "true"
-  let goc_labels = (
-    full_time: "full-time",
-    part_time: "part-time",
-    hours_per_week: "hrs/week",
-    pri: "PRI",
-  )
-  let format_employment = (pos) => {
-    if "employment_type" not in pos { return "" }
-    let label = if pos.employment_type == "part-time" { goc_labels.part_time } else { goc_labels.full_time }
-    if pos.employment_type == "part-time" and "hours_per_week" in pos {
-      label = label + ", " + str(pos.hours_per_week) + " " + goc_labels.hours_per_week
-    }
-    "(" + label + ")"
-  }
-  let format_term_range = (term) => {
-    utils.strpdate(term.startDate) + " " + sym.dash.en + " " + (
-      if term.endDate == "present" { content.ui.labels.present } else { utils.strpdate(term.endDate) }
-    ) + " " + format_employment(term)
-  }
   let uservars = (
       headingfont: "New Computer Modern",
       bodyfont: "New Computer Modern",
@@ -154,12 +134,6 @@
   align(center)[
     #text(size: 18pt, font: "New Computer Modern", weight: "bold")[#content.personal.name] \
     #link("mailto:" + content.personal.email)[#content.personal.email] | #content.personal.phone | #link(content.personal.url)[#content.personal.url.split("//").at(1)] | #link("https://github.com/joshuah143")[github.com/joshuah143] \
-    #if goc_mode and "address" in content.personal and content.personal.address != none [
-      #content.personal.address \
-    ]
-    #if goc_mode and "pri" in content.personal and content.personal.pri != none [
-      #goc_labels.pri: #content.personal.pri \
-    ]
     #text(weight: "bold")[#content.personal.titles.at(0)] \
   ]
 
@@ -177,27 +151,17 @@
 
   for org in content.work {
     if not org.show { continue }
-    if goc_mode and org.at("goc_show", default: true) == false { continue }
     for position in org.positions {
       if not position.show { continue }
       [
         #text(weight: "bold")[#position.position] \
         #org.organization
       ]
-      if goc_mode and "goc_terms" in position {
-        for term in position.goc_terms [
-          \ #h(1em) #format_term_range(term)
-        ]
-        [\ ]
-      } else [
+      [
         | #utils.strpdate(position.startDate) #sym.dash.en #if position.endDate == "present" { ui.labels.present } else { utils.strpdate(position.endDate) }
-        #if goc_mode [ #format_employment(position) ]
         #if org.url != "" [
           | #link(org.url)[#org.url.split("//").at(1)]
         ]\
-      ]
-      if goc_mode and org.at("location", default: "") != "" [
-        #h(1em) #emph(org.location) \
       ]
       for highlight in position.highlights [
         - #eval(highlight, mode: "markup") \

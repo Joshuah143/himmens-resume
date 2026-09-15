@@ -3,21 +3,6 @@
 
 // Academic resume template (language-agnostic)
 #let academic_template(content) = {
-  let goc_mode = sys.inputs.at("goc", default: "false") == "true"
-  let goc_labels = (
-    full_time: "full-time",
-    part_time: "part-time",
-    hours_per_week: "hrs/week",
-    pri: "PRI",
-  )
-  let format_employment = (pos) => {
-    if "employment_type" not in pos { return "" }
-    let label = if pos.employment_type == "part-time" { goc_labels.part_time } else { goc_labels.full_time }
-    if pos.employment_type == "part-time" and "hours_per_week" in pos {
-      label = label + ", " + str(pos.hours_per_week) + " " + goc_labels.hours_per_week
-    }
-    "(" + label + ")"
-  }
   let uservars = (
       headingfont: "New Computer Modern",
       bodyfont: "New Computer Modern",
@@ -117,18 +102,6 @@
               #profiles.join([#sym.space.thin #sym.diamond.filled #sym.space.thin])
           ]
       ]
-      #if goc_mode and "address" in content.personal and content.personal.address != none [
-        #block(width: 100%)[
-          #set text(font: uservars.bodyfont, weight: "medium", size: uservars.fontsize)
-          #content.personal.address
-        ]
-      ]
-      #if goc_mode and "pri" in content.personal and content.personal.pri != none [
-        #block(width: 100%)[
-          #set text(font: uservars.bodyfont, weight: "medium", size: uservars.fontsize)
-          #goc_labels.pri: #content.personal.pri
-        ]
-      ]
   ]
 
   // Education
@@ -150,7 +123,6 @@
   
   for w in content.work {
       if w.show != true { continue }
-      if goc_mode and w.at("goc_show", default: true) == false { continue }
 
       [
         *#w.organization* #h(1fr) *#w.location* #linebreak()
@@ -162,19 +134,9 @@
           if p.show != true { continue }
           if index != 0 { v(0.6em) }
 
-          if goc_mode and "goc_terms" in p {
-            [
-              #text(style: "italic")[#p.position] \
-            ]
-            for term in p.goc_terms [
-              #h(1em) #utils.strpdate(term.startDate) #sym.dash.en #if term.endDate == "present" { ui.labels.present } else { utils.strpdate(term.endDate) } #format_employment(term) \
-            ]
-          } else {
-            [
-              // Line 2: Position and Date Range
-              #text(style: "italic")[#p.position]#if goc_mode [ #format_employment(p) ] #h(1fr) #utils.strpdate(p.startDate) #sym.dash.en #if p.endDate == "present" { ui.labels.present } else { utils.strpdate(p.endDate) }
-            ]
-          }
+          [
+            #text(style: "italic")[#p.position] #h(1fr) #utils.strpdate(p.startDate) #sym.dash.en #if p.endDate == "present" { ui.labels.present } else { utils.strpdate(p.endDate) }
+          ]
 
           // Highlights or Description
           for hi in p.highlights [
