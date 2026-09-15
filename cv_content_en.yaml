@@ -34,11 +34,11 @@ work:
     url: ""
     location: "Palo Alto, CA, USA"
     positions:
-      - position: Tactile Sensing Engineering Intern, Optimus
+      - position: Tactile Sensing Design Intern, Optimus
         show: true
         employment_type: full-time
-        startDate: 2025-05-01
-        endDate: 2025-12-01
+        startDate: 2026-05-01
+        endDate: 2026-12-01
         highlights:
           - "Designed tactile sensors using data-driven models to guide sensor architecture and manufacturing specifications."
           - "Collaborated on neural and classical physics models for Optimus tactile sensors."
