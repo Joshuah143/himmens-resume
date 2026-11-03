@@ -109,7 +109,7 @@
   
   [
     *#content.education.institution* #h(1fr) *#content.education.location* \
-    #text(style: "italic")[#content.education.studyType] #ui.labels.in #content.education.area #h(1fr) #utils.strpdate(content.education.startDate) #sym.dash.en #utils.strpdate(content.education.endDate) \
+    #text(style: "italic")[#content.education.studyType] #ui.labels.in #content.education.area #h(1fr) #utils.strpdate(content.education.startDate) #sym.dash.en #if "endDatePrefix" in content.education { content.education.endDatePrefix + " " }#utils.strpdate(content.education.endDate) \
   ]
   
   if "highlights" in content.education {
@@ -147,18 +147,43 @@
       }
   }
 
+  // Selected Projects
+  if "projects" in content {
+    [== #ui.sections.projects]
+
+    let first = true
+    for proj in content.projects {
+      if proj.visible != true { continue }
+      if not first { v(0.6em) }
+      first = false
+      block(breakable: false)[
+        *#if "url" in proj and proj.url != "" { link(proj.url)[#proj.name] } else { proj.name }* #h(1fr) *#proj.dates* \
+        #text(style: "italic")[#proj.organization] \
+        #for hi in proj.highlights [
+          - #eval(hi, mode: "markup")
+        ]
+      ]
+    }
+  }
+
   // Publications and Presentations
   if "publications" in content {
     [== #ui.sections.publications]
     
     for pub in content.publications {
-      if pub.visible != false [
-        #text(weight: "bold")[#pub.name] #ui.labels.at #pub.publisher #h(1fr) #utils.strpdate(pub.releaseDate) \
-      ]
-      
-      if "highlights" in pub and pub.highlights != none {
-        for highlight in pub.highlights [
-          - #highlight \
+      if pub.visible != false {
+        // Title on its own line(s); venue and notes on the next; date pinned top-right in its own column.
+        let notes = if "highlights" in pub and pub.highlights != none { ". " + pub.highlights.join(" ") } else { "" }
+        block(breakable: false)[
+          #set par(justify: false)
+          #grid(
+            columns: (1fr, auto),
+            column-gutter: 1.5em,
+            align: (left, right),
+            [*#pub.name* \
+             #text(style: "italic")[#pub.publisher]#notes],
+            [#utils.strpdate(pub.releaseDate)],
+          )
         ]
       }
     }
@@ -173,22 +198,21 @@
         // Parse ISO date strings into datetime objects
         let date = utils.strpdate(award.date)
         
-        [
+        block(breakable: false)[
           // Line 1: Award Title and Value
           #if ("value" in award and award.value != none) and show_amounts [
               *#award.title* (\$#award.value) #linebreak()] else [
               *#award.title* #linebreak()
           ]
           // Line 2: Issuer and Date
-          #ui.labels.issued_by #text(style: "italic")[#award.issuer] #h(1fr) #date \
-        ]
-        
-        // Summary or Description
-        if "highlights" in award and award.highlights != none {
-          for hi in award.highlights [
+          #ui.labels.issued_by #text(style: "italic")[#award.issuer] #h(1fr) #if "dateText" in award { award.dateText } else { date }
+          // Summary or Description
+          #if "highlights" in award and award.highlights != none [
+            #for hi in award.highlights [
               - #eval(hi, mode: "markup")
+            ]
           ]
-        }
+        ]
       }
     }
   }
@@ -198,14 +222,18 @@
     [== #ui.sections.advocacy]
     
     for role in content.advocacy {
-      if role.visible != false [
-        #text(weight: "bold")[#role.position] #linebreak()
-        #role.organization #h(1fr) #role.location \
-        #utils.strpdate(role.startDate) #sym.dash.en #if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) } \
-        #for highlight in role.highlights [
-          - #eval(highlight, mode: "markup") \
+      if role.visible != false {
+        if role.highlights.len() == 0 [
+          #text(weight: "bold")[#role.position], #role.organization, #role.location #h(1fr) #utils.strpdate(role.startDate) #sym.dash.en #if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) } \
+        ] else [
+          #text(weight: "bold")[#role.position] #linebreak()
+          #role.organization #h(1fr) #role.location \
+          #utils.strpdate(role.startDate) #sym.dash.en #if role.endDate == "present" { ui.labels.present } else { utils.strpdate(role.endDate) } \
+          #for highlight in role.highlights [
+            - #eval(highlight, mode: "markup") \
+          ]
         ]
-      ]
+      }
     }
   }
 
@@ -219,12 +247,12 @@
   }
 
   // Experiences
-  if "experiences" in content {
+  if "experiences" in content and content.experiences.any(e => e.visible) {
     [== #ui.sections.experiences]
     
     for exp in content.experiences {
       if exp.visible [
-        - *#exp.name* (#exp.organization): #exp.description
+        - *#exp.name*#if exp.at("showOrganization", default: true) { [ (#exp.organization)] }: #exp.description
       ]
     }
   }

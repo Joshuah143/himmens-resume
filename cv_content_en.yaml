@@ -19,13 +19,14 @@ education:
   area: Engineering Physics
   startDate: 2023-09-01
   endDate: 2028-05-01
+  endDatePrefix: "Expected"
   location: Vancouver, BC, Canada
   gpa: "92% (A+)"
   honors:
     - "Dean's Honor List (all years)"
   highlights:
-    - "Capstone projects: Built an ML-controlled dual-arm napkin-folding robot and co-designed a 5x5 phased-array sonar with 24 receive channels and FPGA-based simultaneous beamforming."
-    - "Specialized in entrepreneurship, machine learning, quantum computing, robotics, and embedded systems."
+    - "Capstone projects: Linique, a VLA-controlled bimanual napkin-folding robot (2025–26); sim-to-real reinforcement learning for a multi-car RC platform (2026–27, in progress); designed a 24-channel phased-array sonar."
+    - "Specialized in machine learning, robotics, controls, embedded systems, and quantum computing."
 
 work:
   - organization: Tesla
@@ -38,9 +39,11 @@ work:
         startDate: 2026-05-01
         endDate: 2026-12-01
         highlights:
-          - "Designed tactile sensors using data-driven models to guide sensor architecture and manufacturing specifications."
-          - "Collaborated on neural and classical physics models for Optimus tactile sensors."
-          - "Characterized tactile sensors, defined test specification limits for incoming samples, and collaborated on test infrastructure design."
+          - "Owned specifications and test plans for Optimus end-of-line, incoming quality control, and characterization testers."
+          - "Developed mechatronic test systems using 7-DOF robot arms with vision in the loop, 3D reconstruction of complex geometries, and semantic object reconstruction."
+          - "Built failure-analysis tooling for tactile sensors used across sensing, manufacturing, and supply chain teams."
+          - "Designed and debugged on-bot sensors and electronics, using learned and classical physics models to guide architecture and manufacturing specs."
+          - "Named inventor on a provisional patent application."
 
   - organization: AltaML
     show: true
@@ -52,10 +55,10 @@ work:
         startDate: 2025-01-01
         endDate: 2025-04-01
         highlights:
-          - "Developed machine learning models using scikit-learn to save the Government of Alberta *>\\$4 million* annually."
-          - "Developed novel evaluation metrics to minimize regional bias and maximize transferability of models."
+          - "Developed machine learning models using scikit-learn projected to save the Government of Alberta >\\$4 million annually."
+          - "Diagnosed a geographic shortcut in the training data, where random negative pairs had turned the classifier into a distance model, and fixed it through data construction rather than model choice."
           - "Built Azure ML pipelines for automated model training and deployment, serving predictions via REST APIs integrated with SQL databases and Blob Storage."
-          - "Implemented Uber's H3 hexagonal spatial indexing to balance geographic accuracy with user privacy in an infrastructure planning tool."
+          - "Implemented H3 spatial indexing to balance geographic accuracy with user privacy in an infrastructure planning tool."
 
   - organization: TRIUMF
     show: true
@@ -67,10 +70,11 @@ work:
         startDate: 2024-05-01
         endDate: 2025-02-20
         highlights:
-          - Developed panoptic segmentation models for the ATLAS detector using the PointNet ML framework with wandb, TensorFlow, Keras.
+          - Developed PointNet-based panoptic segmentation models to associate ATLAS calorimeter signals with particle tracks, using TensorFlow and Keras.
+          - Discovered and corrected inverted energy-attribution labels in a shared training pipeline, restoring the intended learning target for researchers using the same data.
           - Used CERN's grid computing to parallelize compute across thousands of nodes.
-          - Worked independently to develop models using cutting-edge transfer learning approaches.
-          - Implemented models into production using NVIDIA Triton.
+          - "Trained with an energy curriculum: pretrained on simple low-energy decays, then iteratively mixed in higher-energy bins, after strong results on small events failed to transfer to large ones."
+          - Implemented model serving with NVIDIA Triton for production deployment.
 
   - organization: UBC Orbit Satellite Design Team
     show: true
@@ -81,14 +85,12 @@ work:
         show: true
 
         startDate: 2023-10-01
-        endDate: "present"
+        endDate: 2026-10-01
         highlights:
-          - Led the CDH team to develop software to meet mission and testing objectives from ESA (European Space Agency) for the ALEASAT project.
-          - "Managed a team of *10* firmware developers, with over *\\$15 000* worth of technical infrastructure."
-          - Developed mission testing, function testing, and acceptance testing procedures to meet ESA and ECSS standards.
-          - Programmed device drivers and electrical ground support equipment (EGSE).
+          - "Led a team of 10 firmware developers building fault-tolerant flight software (FreeRTOS, TMS570) to ESA mission objectives for ALEASAT."
+          - "Developed mission, function, and acceptance testing procedures to ESA and ECSS standards; built the FlatSat avionics test bench and programmed device drivers and electrical ground support equipment."
       - position: Embedded Firmware Developer
-        show: true
+        show: false
 
         startDate: 2023-01-01
         endDate: "present"
@@ -156,53 +158,61 @@ work:
         highlights:
           - Assisted in creating programs for Sustainable Development Goals education and outreach.
 
+projects:
+  - name: "Linique: Bimanual Robot Learning for Napkin Folding"
+    organization: "UBC Engineering Physics capstone, six-person team; one of three Faculty Awards, Design & Innovation Day 2026"
+    dates: "Sep 2025 – Apr 2026"
+    url: "https://himmens.com/post/2026-07-11-linique-napkin-folding-robot/"
+    visible: true
+    highlights:
+      - "Owned the software and robot-learning stack for a bimanual SO-101 system: synchronized teleoperation data collection, policy training, and on-device inference; roughly 40% autonomous folding success in physical trials."
+      - "Chose real demonstrations over simulation, since deformable-cloth FEM is intractable for this task, and trained ACT, SmolVLA, and X-VLA policies on a #link(\"https://doi.org/10.57967/hf/8174\")[published 499-episode dataset]."
+      - "Added a stage-and-progress reward model to reweight demonstrations for sample efficiency; diagnosed missed 30 Hz control deadlines and contributed SO-101 calibration test cases to LeRobot."
+
+  - name: "FizzVolt: Reinforcement Learning for Circuit Design"
+    organization: "HUD RL Environments Hackathon at Y Combinator, two-person team"
+    dates: "Jun 2026"
+    url: "https://himmens.com/post/2026-10-05-fizzvolt-circuit-design-rewards/"
+    visible: true
+    highlights:
+      - "Built a GRPO training environment in which Qwen3-8B writes programs that construct circuit graphs, graded by deterministic electrical-rule, KiCad ERC, cost, size, and component-availability validators."
+
+  - name: "HTTP 418: Autonomous Driving in Simulation"
+    organization: "UBC ENPH 353, two-person team"
+    dates: "Dec 2025"
+    url: "https://himmens.com/post/2025-12-06-enph353-autonomous-robot/"
+    visible: true
+    highlights:
+      - "Built a ROS control system in Gazebo combining imitation-learned steering (ONNX), HSV sign detection, and cloud-hosted YOLO OCR with histogram voting, after benchmarking PPO, SAC, and DQN against imitation learning."
+
 awards:
-  - title: "2026 Design & Innovation Day Faculty Award"
+  - title: "2026 Design & Innovation Day Faculty Award, for Linique"
     issuer: UBC Faculty of Applied Science
     date: 2026-04-01
-    highlights:
-    - "Earned one of three Faculty Awards for Linique, a dual-arm napkin-folding robot powered by a four-camera learned controller and vision-language-action model; contributed improvements to the open-source LeRobot framework."
+    highlights: null
     value: 100
     visible: true
 
   - title: "Hector J. MacLeod Award"
     issuer: IEEE Vancouver Section
     date: 2024-04-15
-    highlights: 
-    - "Awarded to students who have demonstrated pioneering efforts in their chosen field of study and attained high scholastic honours."
+    highlights: null
     value: 2000
     visible: true
 
   - title: "Erich Vogt First Year Summer Research Experience (FYSRE) Award"
     issuer: UBC Department of Physics and Astronomy
     date: 2024-05-01
-    highlights: 
-    - "Awarded to promising students in physics for a 4-month research placement."
+    highlights: null
     value: null
     visible: true
 
-  - title: "Alberta Centennial Award and Alberta Premier's Citizenship Award"
-    issuer: Government of Alberta
-    date: 2023-05-01
-    highlights: 
-    - "Awarded for outstanding community service."
-    value: 2000
-    visible: true
-
-  - title: "Calgary Flames Foundation Community Involvement Scholarship"
-    issuer: Education Matters
+  - title: "Community service awards: Alberta Centennial Award and Alberta Premier's Citizenship Award; Calgary Flames Foundation Community Involvement Scholarship; Julia Turnbull Leadership Award"
+    issuer: Government of Alberta, Education Matters, and The Calgary Foundation
     date: 2023-08-01
-    highlights: 
-    - "Awarded for community involvement."
-    value: 2005
-    visible: true
-
-  - title: "Julia Turnbull Leadership Award for exceptional community service"
-    issuer: The Calgary Foundation
-    date: 2023-07-01
-    highlights: 
-    - "Awarded for exceptional community service."
-    value: 1000
+    dateText: "May – Aug 2023"
+    highlights: null
+    value: 5005
     visible: true
 
   - title: "Ted Rogers Entrance Scholarship"
@@ -231,25 +241,28 @@ awards:
 
 skills:
   - title: "Machine Learning"
-    description: "TensorFlow, Keras, PointNet, Weights and Biases (wandb), ONNX, LeRobot, Runpod, Triton"
+    description: "PyTorch, TensorFlow, Keras, LeRobot (ACT, SmolVLA, X-VLA), scikit-learn, Weights and Biases, ONNX, NVIDIA Triton, GRPO, PPO"
     visible: true
-  - title: "Embedded Programming"
-    description: "Experienced with FreeRTOS on TMS570, RP2040, STM32, Xilinx and Altera FPGAs, KiCAD"
+  - title: "Robotics and Controls"
+    description: "ROS 2, MoveIt, Isaac Lab, Genesis, Gazebo, imitation learning, PID, inverse kinematics"
     visible: true
-  - title: "Software Development"
-    description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git"
+  - title: "Embedded Systems"
+    description: "FreeRTOS, TMS570, RP2040, STM32, ESP32, Xilinx and Altera FPGAs, KiCad"
+    visible: true
+  - title: "Languages and Tools"
+    description: "Python, Rust, C, C++, Java, MATLAB, Bash, Git, Slurm, RunPod, Modal"
     visible: true
   - title: "Quantum Computing"
-    description: "Qiskit, QASM, Pasqal, QCNNs, VQCs"
+    description: "Qiskit, QASM, Pasqal, QCNNs, VQCs; GENQ Global Hackathon (Geneva 2025, Calgary 2024)"
     visible: true
   - title: "Particle Physics"
     description: "ROOT, CERN grid computing, Athena"
-    visible: true
+    visible: false
   - title: "Cloud Computing"
     description: "Azure ML, Azure DevOps, REST APIs, SQL, Blob Storage"
     visible: false
   - title: "Design"
-    description: "Fusion, OnShape, KiCAD"
+    description: "Fusion, OnShape, KiCad"
     visible: false
 
 publications:
@@ -258,7 +271,15 @@ publications:
     releaseDate: "2026-03-01"
     url: ""
     highlights:
-      - "Placed 3rd. Explored various policies on SO-101 arms."
+      - "Placed 3rd. Poster on ACT, SmolVLA, and a stage-and-progress reward model for bimanual cloth folding."
+    visible: true
+
+  - name: "Machine Learning Approaches to Segmentation for Reconstruction in the ATLAS Calorimeter"
+    publisher: "Winter Nuclear and Particle Physics Conference (WNPPC 2025), Banff"
+    releaseDate: "2025-02-14"
+    url: "https://indico.triumf.ca/event/605/"
+    highlights:
+      - "Contributed oral to a primarily graduate and postdoctoral audience."
     visible: true
 
   - name: "Developing Machine Learning Techniques for Particle Flow in the ATLAS Experiment"
@@ -266,7 +287,7 @@ publications:
     releaseDate: "2024-06-01"
     url: "https://himmens.com/publications/casst2024"
     highlights:
-      - "Placed 2nd of 44 presentations."
+      - "Placed 2nd of 44 talks."
     visible: true
     
   - name: "JetPointNet: A Machine Learning Approach to Cell-to-Track Attribution in the ATLAS Experiment"
@@ -288,14 +309,13 @@ publications:
     visible: true
 
 advocacy:
-  - organization: "UBC IEEE Aerospace Electrical Systems Student Branch Chapter"
-    position: "Chair"
+  - organization: "UBC IEEE Aerospace and Electronic Systems Society (AESS) Student Branch Chapter"
+    position: "Founding Chair (Aug 2025 – May 2026), now Past Chair"
     startDate: "2025-08-25"
-    endDate: "2026-05-01"
+    endDate: "present"
     location: "Vancouver"
     highlights:
-      - "Served as *Technical Program Chair* for the Student Aerospace Summit, September 2025."
-      - "Organized events to unify aerospace-interested students across UBC."
+      - "Founded the chapter and chaired its first year; Technical Program Chair, Student Aerospace Summit 2025."
     visible: true
 
   - organization: "Arthur B McDonald Astroparticle Physics Institute"
@@ -313,9 +333,7 @@ advocacy:
     startDate: "2021-01-01"
     endDate: "2023-12-31"
     location: "Geneva, Switzerland (remote)"
-    highlights:
-      - "Provided guidance to UN delegations on communication strategies for high-level rights goals."
-      - "Presented to governments and consulted on international initiatives to support the UN Convention on the Rights of the Child."
+    highlights: []
     visible: true
     
   - organization: "Organization of American States"
@@ -329,15 +347,22 @@ advocacy:
     visible: false
 
 experiences:
-  - name: "FizzVolt, HUD RL for Hardware Hackathon"
+  - name: "Reinforcement Learning for Circuit Design"
     organization: "HUD"
+    showOrganization: false
     description: "Built a GRPO reinforcement-learning environment that trains Qwen3 models to generate KiCad circuit designs using deterministic electrical-rule, cost, size, and availability validators as the reward"
-    visible: true
+    visible: false
+
+  - name: "HTTP 418 - Simulated Autonomous Driving"
+    organization: "UBC ENPH 353"
+    showOrganization: false
+    description: "Built an autonomous driving system in ROS and Gazebo simulation, combining imitation-learned steering, ONNX inference, and cloud-hosted YOLO OCR"
+    visible: false
 
   - name: "Quantum School for Young Students"
     organization: "University of Waterloo and Institute for Quantum Computing"
     description: "Participant in intensive quantum computing program"
-    visible: true
+    visible: false
     
   - name: "Introduction to Quantum Computing"
     organization: "IBM"
@@ -351,15 +376,16 @@ experiences:
 
   - name: "GENQ Global Hackathon (Geneva, 2025 and Calgary, 2024)"
     organization: "Quantum AI Ventures"
-    description: "Build QCNNs and QUBO solvers for quantum machine learning tasks"
-    visible: true
+    description: "Built QCNNs and QUBO solvers for quantum machine learning tasks"
+    visible: false
 
 ui:
   sections:
     education: "Education"
-    work: "Work Experience" 
+    work: "Work Experience"
+    projects: "Selected Projects"
     publications: "Publications and Presentations"
-    awards: "Honors and Awards"
+    awards: "Honours and Awards"
     advocacy: "Leadership and Advocacy"
     skills: "Technical Skills"
     experiences: "Additional Experience"

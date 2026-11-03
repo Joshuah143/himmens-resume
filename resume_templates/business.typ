@@ -202,10 +202,23 @@
     }
   }
 
-  // Experiences section
-  [= #ui.sections.experiences]
+  // Projects section
+  if "projects" in content and content.projects.any(p => p.visible) {
+    [= #ui.sections.projects]
+    for proj in content.projects {
+      if proj.visible [
+        #achievement(
+          focus: proj.name + ".",
+          description: eval(proj.highlights.join(" "), mode: "markup"),
+          visible: true
+        )
+      ]
+    }
+  }
 
-  if "experiences" in content {
+  // Experiences section
+  if "experiences" in content and content.experiences.any(e => e.visible) {
+    [= #ui.sections.experiences]
     for exp in content.experiences {
       if exp.visible [
         #achievement(
@@ -225,9 +238,11 @@
       if award_item.visible [
         #text(weight: "bold")[#award_item.title]
         #h(1fr) #utils.strpdate(award_item.date) \
-        #for highlight in award_item.highlights [
-          #highlight \
-        ]
+        #if "highlights" in award_item and award_item.highlights != none {
+          for highlight in award_item.highlights [
+            #highlight \
+          ]
+        }
       ]
     }
   }
